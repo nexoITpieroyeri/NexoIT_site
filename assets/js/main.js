@@ -47,11 +47,23 @@
     });
   }
 
-  // Botón subir
+  // Botón subir y efectos en header
   const onScroll = () => {
     if (!toTop) return;
     const show = window.scrollY > 400;
     toTop.classList.toggle("show", show);
+    
+    // Efecto en header al hacer scroll
+    const header = document.querySelector('.header');
+    if (header) {
+      if (window.scrollY > 50) {
+        header.style.background = 'rgba(7,11,18,.85)';
+        header.style.boxShadow = '0 4px 30px rgba(0,0,0,.3)';
+      } else {
+        header.style.background = 'rgba(7,11,18,.7)';
+        header.style.boxShadow = 'none';
+      }
+    }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
@@ -186,10 +198,51 @@
       rootMargin: "0px 0px -50px 0px"
     });
 
-    const animatedElements = document.querySelectorAll(".animate-on-scroll");
+    const animatedElements = document.querySelectorAll(".animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale-in, .animate-blur-in");
     animatedElements.forEach(el => observer.observe(el));
   };
   observeElements();
+
+  // Animación de números para estadísticas
+  const animateNumbers = () => {
+    const stats = document.querySelectorAll('.stat__k');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target;
+          const text = target.textContent;
+          const hasPlus = text.includes('+');
+          const hasPercent = text.includes('%');
+          const cleanText = text.replace(/[^0-9]/g, '');
+          const number = parseInt(cleanText);
+          
+          if (!isNaN(number) && number > 0) {
+            let current = 0;
+            const increment = number / 50;
+            const duration = 1500;
+            const stepTime = duration / 50;
+            
+            const counter = setInterval(() => {
+              current += increment;
+              if (current >= number) {
+                current = number;
+                clearInterval(counter);
+              }
+              let display = Math.round(current);
+              if (hasPlus) display = '+' + display;
+              if (hasPercent) display = display + '%';
+              target.textContent = display;
+            }, stepTime);
+          }
+          
+          observer.unobserve(target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    stats.forEach(stat => observer.observe(stat));
+  };
+  animateNumbers();
 
   // Lightbox para imágenes de galería
   const initLightbox = () => {
@@ -238,4 +291,102 @@
     });
   };
   initLightbox();
+
+  // Efecto de parallax suave en imágenes
+  const initParallax = () => {
+    const parallaxImages = document.querySelectorAll('.pcard__media img, .person__img');
+    
+    parallaxImages.forEach(img => {
+      img.addEventListener('mousemove', (e) => {
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        img.style.transform = `scale(1.05) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      img.addEventListener('mouseleave', () => {
+        img.style.transform = 'scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
+      });
+    });
+  };
+  initParallax();
+
+  // Efecto de ripple en botones
+  const initRippleEffect = () => {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+          position: absolute;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          width: 100px;
+          height: 100px;
+          left: ${x - 50}px;
+          top: ${y - 50}px;
+          transform: scale(0);
+          animation: ripple-animation 0.6s linear;
+          pointer-events: none;
+        `;
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+    
+    // Agregar estilo de ripple dinámicamente
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  };
+  initRippleEffect();
+
+  // Smooth scroll mejorado para navegación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Efecto de typing en el hero h1
+  const initTypingEffect = () => {
+    const h1 = document.querySelector('.hero__copy h1');
+    if (!h1) return;
+    
+    const originalText = h1.innerHTML;
+    h1.innerHTML = originalText;
+  };
+  initTypingEffect();
 })();

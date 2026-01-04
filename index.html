@@ -29,8 +29,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
 </head>
 <body>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
   <a class="skip" href="#contenido">Saltar al contenido</a>
 
   <header class="header" id="top">
@@ -64,35 +76,35 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container hero__grid">
-        <div class="hero__copy">
-          <p class="pill">Ingeniería de software • Web • Apps • Automatización</p>
-          <h1>Convertimos ideas en <span class="grad">sistemas, apps</span> y <span class="grad2">webs</span> listas para crecer.</h1>
-          <p class="lead">
+        <div class="hero__copy animate-blur-in">
+          <p class="pill animate-scale-in animate-delay-1">Ingeniería de software • Web • Apps • Automatización</p>
+          <h1 class="animate-scale-in animate-delay-2">Convertimos ideas en <span class="grad gradient-animated">sistemas, apps</span> y <span class="grad2 gradient-animated">webs</span> listas para crecer.</h1>
+          <p class="lead animate-scale-in animate-delay-3">
             Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas enfocado en crear soluciones rápidas, seguras y escalables:
             páginas web, aplicaciones móviles, sistemas internos, software a medida y apoyo en proyectos.
           </p>
 
-          <div class="hero__cta">
+          <div class="hero__cta animate-scale-in animate-delay-4">
             <a class="btn" href="#contacto">Quiero una cotización</a>
             <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
           </div>
 
           <div class="hero__stats" role="list" aria-label="Indicadores">
-            <div class="stat" role="listitem">
+            <div class="stat animate-on-scroll animate-delay-1" role="listitem">
               <span class="stat__k">+24h</span>
               <span class="stat__t">Respuesta promedio</span>
             </div>
-            <div class="stat" role="listitem">
+            <div class="stat animate-on-scroll animate-delay-2" role="listitem">
               <span class="stat__k">100%</span>
               <span class="stat__t">Enfoque en calidad</span>
             </div>
-            <div class="stat" role="listitem">
+            <div class="stat animate-on-scroll animate-delay-3" role="listitem">
               <span class="stat__k">Web + App</span>
               <span class="stat__t">Proyectos integrados</span>
             </div>
           </div>
 
-          <div class="hero__trust">
+          <div class="hero__trust animate-scale-in animate-delay-5">
             <span class="muted">Stack:</span>
             <span class="chip">HTML/CSS/JS</span>
             <span class="chip">React</span>
@@ -103,7 +115,7 @@
           </div>
         </div>
 
-        <div class="hero__card">
+        <div class="hero__card animate-slide-right">
           <div class="card">
             <div class="card__top">
               <div class="pulse"></div>
@@ -536,24 +548,24 @@
         </div>
 
     <div class="contact">
-      <div class="contact__side">
-        <div class="contactcard">
-          <h3>Escríbenos</h3>
+      <div class="contact__side animate-slide-left">
+        <div class="contactcard glassmorphism">
+          <h3 class="gradient-animated">Escríbenos</h3>
           <a class="contactcard__link" href="#" id="waLink">WhatsApp: 982 108 849</a>
           <a class="contactcard__link" href="mailto:nexoit90@gmail.com">Correo: nexoit90@gmail.com</a>
         </div>
 
-        <div class="contactcard">
-          <h3>Redes sociales</h3>
+        <div class="contactcard glassmorphism">
+          <h3 class="gradient-animated">Redes sociales</h3>
           <p class="muted">Síguenos para ver avances y contenido.</p>
           <div class="social">
-            <a class="social__btn" href="#" id="fbLink" aria-label="Facebook">
+            <a class="social__btn icon-rotate" href="#" id="fbLink" aria-label="Facebook">
               <img src="assets/img/icons/facebook.svg" alt="" aria-hidden="true">
             </a>
-            <a class="social__btn" href="#" id="igLink" aria-label="Instagram">
+            <a class="social__btn icon-rotate" href="#" id="igLink" aria-label="Instagram">
               <img src="assets/img/icons/instagram.svg" alt="" aria-hidden="true">
             </a>
-            <a class="social__btn" href="#" id="ttLink" aria-label="TikTok">
+            <a class="social__btn icon-rotate" href="#" id="ttLink" aria-label="TikTok">
               <img src="assets/img/icons/tiktok.svg" alt="" aria-hidden="true">
             </a>
           </div>
@@ -561,7 +573,7 @@
         </div>
       </div>
 
-      <form class="form" id="form">
+      <form class="form glassmorphism animate-slide-right" id="form">
         <div class="row">
           <label>
             Nombre
