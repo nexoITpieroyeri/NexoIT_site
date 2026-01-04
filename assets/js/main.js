@@ -430,8 +430,47 @@
       setTimeout(type, typeSpeed);
     };
 
-    // Comenzar con un delay inicial
     setTimeout(type, 1000);
   };
   initTypingEffect();
+
+  // Filtros de Portafolio
+  const initPortfolioFilters = () => {
+    const filters = document.querySelectorAll('.portfolio__filter');
+    const projects = document.querySelectorAll('.pcard');
+
+    if (!filters.length) return;
+
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        const category = filter.dataset.filter;
+
+        filters.forEach(f => f.classList.remove('active'));
+        filter.classList.add('active');
+
+        projects.forEach(project => {
+          const projectCategory = project.dataset.category;
+          
+          if (category === 'all' || projectCategory === category) {
+            project.style.display = 'flex';
+            project.style.opacity = '0';
+            project.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              project.style.opacity = '1';
+              project.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            project.style.opacity = '0';
+            project.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              project.style.display = 'none';
+            }, 400);
+          }
+        });
+      });
+    });
+  };
+  initPortfolioFilters();
 })();

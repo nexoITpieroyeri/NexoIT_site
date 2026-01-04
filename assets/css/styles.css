@@ -1406,10 +1406,9 @@ input:hover, select:hover, textarea:hover {
   justify-content:center;
 }
 .portfolio__filter{
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:10px 16px;
+  padding:12px 20px;
   border-radius:99px;
   border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.04);
@@ -1418,6 +1417,18 @@ input:hover, select:hover, textarea:hover {
   font-size:14px;
   cursor:pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position:relative;
+  overflow:hidden;
+}
+.portfolio__filter::before{
+  content: '';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  transition: left 0.5s ease;
 }
 .portfolio__filter:hover{
   background:rgba(46,245,154,.08);
@@ -1425,26 +1436,14 @@ input:hover, select:hover, textarea:hover {
   color: var(--green2);
   transform: translateY(-2px);
 }
+.portfolio__filter:hover::before{
+  left:100%;
+}
 .portfolio__filter.active{
   background: linear-gradient(135deg, rgba(46,245,154,.18), rgba(67,200,255,.08));
   border-color: rgba(46,245,154,.3);
   color: var(--text);
   box-shadow: 0 4px 12px rgba(46,245,154,.15);
-}
-.portfolio__count{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-width:24px;
-  height:24px;
-  padding:0 8px;
-  background:rgba(0,0,0,.3);
-  border-radius:99px;
-  font-size:12px;
-  font-weight:700;
-}
-.portfolio__filter.active .portfolio__count{
-  background: rgba(46,245,154,.2);
 }
 
 .portfolio{

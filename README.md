@@ -200,10 +200,14 @@ El sitio es completamente responsive y se adapta a:
 
 ### Portafolio
 - **Nuevo**: Masonry layout con cards de diferentes tamaños (large, tall)
+- **Nuevo**: Sistema de filtros por categoría (Todos, E-commerce, Sitios Web, Sistemas)
 - Cards con imágenes y calificaciones
+- Badges de "Destacado" y "Popular"
 - Efectos de parallax en imágenes
 - Animaciones de zoom al hover
+- Metadatos de fecha y tecnología
 - Lightbox para ver imágenes en grande
+- CTA de contacto en la sección
 
 ### Testimonios
 - **Nuevo**: Sección con 3 testimonios de clientes
