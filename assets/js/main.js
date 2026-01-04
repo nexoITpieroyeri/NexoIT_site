@@ -1,5 +1,19 @@
 // NexoIT - JS principal (menú, scroll, links, formulario WhatsApp)
 (() => {
+  // Preloader
+  const initPreloader = () => {
+    const preloader = document.getElementById('pageLoader');
+    if (!preloader) return;
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        document.body.classList.add('loaded');
+      }, 1500);
+    });
+  };
+  initPreloader();
+
   const navBtn = document.getElementById("navbtn");
   const nav = document.getElementById("nav");
   const toTop = document.getElementById("totop");
@@ -382,11 +396,42 @@
 
   // Efecto de typing en el hero h1
   const initTypingEffect = () => {
-    const h1 = document.querySelector('.hero__copy h1');
-    if (!h1) return;
+    const typewriterEl = document.getElementById('typewriter');
+    if (!typewriterEl) return;
     
-    const originalText = h1.innerHTML;
-    h1.innerHTML = originalText;
+    const words = ['sistemas, apps', 'soluciones digitales', 'software a medida', 'experiencias únicas'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    const type = () => {
+      const currentWord = words[wordIndex];
+      
+      if (isDeleting) {
+        typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = 50;
+      } else {
+        typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 100;
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 500;
+      }
+
+      setTimeout(type, typeSpeed);
+    };
+
+    // Comenzar con un delay inicial
+    setTimeout(type, 1000);
   };
   initTypingEffect();
 })();
