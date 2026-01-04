@@ -399,7 +399,7 @@
     const typewriterEl = document.getElementById('typewriter');
     if (!typewriterEl) return;
     
-    const words = ['sistemas, apps', 'soluciones digitales', 'software a medida', 'experiencias únicas'];
+    const words = ['webs, sistemas, apps', 'soluciones digitales', 'software a medida', 'experiencias únicas'];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
