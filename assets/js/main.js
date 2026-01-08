@@ -35,7 +35,7 @@
   const SOCIAL = {
     facebook: "https://www.facebook.com/",
     instagram: "https://www.instagram.com/",
-    tiktok: "https://www.tiktok.com/"
+    tiktok: "https://www.tiktok.com/@nexo.it"
   };
 
   if (year) year.textContent = String(new Date().getFullYear());
