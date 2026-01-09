@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laptop 3D - Servicios de Desarrollo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+    #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+    #error {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ff0000;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      z-index: 1000;
+    }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #333;
+      font-size: 24px;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">Cargando laptop 3D...</div>
+  <div id="canvas-container"></div>
+  <div id="error"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  
+  <script>
+    window.addEventListener('load', function() {
+      try {
+        document.getElementById('loading').style.display = 'none';
+        
+        const scene = new THREE.Scene();
+
+        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.set(6, 4, 6);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 3;
+        controls.maxDistance = 15;
+        controls.maxPolarAngle = Math.PI / 2;
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, 2);
+        mainLight.position.set(5, 10, 5);
+        mainLight.castShadow = true;
+        mainLight.shadow.mapSize.width = 2048;
+        mainLight.shadow.mapSize.height = 2048;
+        scene.add(mainLight);
+
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        fillLight.position.set(-5, 5, -5);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        rimLight.position.set(0, 5, -8);
+        scene.add(rimLight);
+
+        const chassisMat = new THREE.MeshStandardMaterial({
+          color: 0x666666,
+          metalness: 0.95,
+          roughness: 0.15
+        });
+
+        const keyMat = new THREE.MeshStandardMaterial({
+          color: 0x777777,
+          metalness: 0.7,
+          roughness: 0.3
+        });
+
+        const touchpadMat = new THREE.MeshStandardMaterial({
+          color: 0x888888,
+          metalness: 0.85,
+          roughness: 0.25
+        });
+
+        const screenMat = new THREE.MeshStandardMaterial({
+          color: 0x222222,
+          metalness: 0.6,
+          roughness: 0.6
+        });
+
+        const logoMat = new THREE.MeshStandardMaterial({
+          color: 0x999999,
+          metalness: 0.9,
+          roughness: 0.1
+        });
+
+        const laptop = new THREE.Group();
+        scene.add(laptop);
+
+        const base = new THREE.Mesh(
+          new THREE.BoxGeometry(4.5, 0.16, 2.8),
+          chassisMat
+        );
+        base.position.y = 0.08;
+        base.castShadow = true;
+        base.receiveShadow = true;
+        laptop.add(base);
+
+        const ventMat = new THREE.MeshStandardMaterial({
+          color: 0x555555,
+          metalness: 0.8,
+          roughness: 0.2
+        });
+
+        for (let i = 0; i < 7; i++) {
+          const vent = new THREE.Mesh(
+            new THREE.BoxGeometry(4.4, 0.02, 0.08),
+            ventMat
+          );
+          vent.position.set(0, 0.162, -1.2 + i * 0.12);
+          laptop.add(vent);
+        }
+
+        const keySize = 0.24;
+        const keyHeight = 0.04;
+        const keyGap = 0.015;
+
+        let keyHue = 0;
+        const rgbSpeed = 0.002;
+
+        const createKey = (x, z, w = keySize) => {
+          const keyGroup = new THREE.Group();
+          const keyBase = new THREE.Mesh(
+            new THREE.BoxGeometry(w, keyHeight, keySize),
+            keyMat.clone()
+          );
+          keyBase.position.set(0, 0, 0);
+          keyBase.castShadow = true;
+          keyGroup.add(keyBase);
+          
+          const keyBorderMat = new THREE.MeshStandardMaterial({
+            color: 0x2a2a35,
+            metalness: 0.8,
+            roughness: 0.25,
+            emissive: 0xff0000,
+            emissiveIntensity: 0.8
+          });
+          
+          const keyBorder = new THREE.Mesh(
+            new THREE.BoxGeometry(w + 0.02, keyHeight * 0.5, keySize + 0.02),
+            keyBorderMat.clone()
+          );
+          keyBorder.position.set(0, -keyHeight * 0.25, 0);
+          keyBorder.userData.isKeyBorder = true;
+          keyGroup.add(keyBorder);
+          
+          keyGroup.position.set(x, 0.168, z);
+          return keyGroup;
+        };
+
+        const keyboardLayout = [
+          { z: -0.85, keys: [1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.8], offset: 0 },
+          { z: -0.55, keys: [1.5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.5], offset: 0 },
+          { z: -0.25, keys: [1.7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1.8], offset: 0 },
+          { z: 0.05, keys: [2.0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2.0], offset: 0 },
+          { z: 0.35, keys: [1.3, 1.3, 4.8, 1.3, 1.5], offset: 0 }
+        ];
+
+        const keys = [];
+        keyboardLayout.forEach(row => {
+          const totalWidth = row.keys.reduce((a, w) => a + w * keySize, 0) + (row.keys.length - 1) * keyGap;
+          let startX = -totalWidth / 2 + row.offset;
+          row.keys.forEach((w, i) => {
+            const x = startX + (w * keySize) / 2;
+            const key = createKey(x, row.z, w * keySize);
+            keys.push(key);
+            laptop.add(key);
+            startX += w * keySize + keyGap;
+          });
+        });
+
+const touchpad = new THREE.Mesh(
+  new THREE.BoxGeometry(1.35, 0.016, 0.7),
+  touchpadMat
+);
+touchpad.position.set(0, 0.168, 1.0);
+laptop.add(touchpad);
+
+        const hinge = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.06, 0.06, 4.3, 32),
+          new THREE.MeshStandardMaterial({ color: 0x777777, metalness: 0.9, roughness: 0.2 })
+        );
+        hinge.rotation.z = Math.PI / 2;
+        hinge.position.set(0, 0.16, -1.2);
+        laptop.add(hinge);
+
+        const screen = new THREE.Group();
+        screen.position.set(0, 0.16, -1.2);
+        screen.rotation.x = -Math.PI / 6;
+        laptop.add(screen);
+
+        const lid = new THREE.Mesh(
+          new THREE.BoxGeometry(4.5, 2.7, 0.1),
+          chassisMat
+        );
+        lid.position.set(0, 1.25, -0.05);
+        lid.castShadow = true;
+        screen.add(lid);
+
+        const bezel = new THREE.Mesh(
+          new THREE.BoxGeometry(4.05, 2.28, 0.05),
+          screenMat
+        );
+        bezel.position.set(0, 1.25, 0.02);
+        screen.add(bezel);
+
+        const logoTextureLoader = new THREE.TextureLoader();
+        const logoBackTexture = logoTextureLoader.load('assets\img\fotos3D\logodeatras.jpg', () => {
+          console.log('Logo de la parte trasera cargado');
+        }, undefined, (error) => {
+          console.error('Error cargando logo trasero:', error);
+        });
+
+        const logoBack = new THREE.Mesh(
+          new THREE.CircleGeometry(0.5, 64),
+          new THREE.MeshBasicMaterial({ map: logoBackTexture, transparent: true, side: THREE.DoubleSide })
+        );
+        logoBack.position.set(0, 1.25, -0.12);
+        logoBack.rotation.x = Math.PI;
+        screen.add(logoBack);
+
+        const displayCanvas = document.createElement('canvas');
+        displayCanvas.width = 1024;
+        displayCanvas.height = 600;
+        const ctx = displayCanvas.getContext('2d');
+
+        const images = [];
+        const imageUrls = [
+          'assets\img\fotos3D\nomsbreaamt.jpg',
+          'assets\img\fotos3D\d5eb177b-96ca-41f4-9bd2-2296bcdce791.jpg',
+          'assets\img\fotos3D\caomaocmao.jpg',
+        ];
+        let loadedImages = 0;
+        let currentImageIndex = 0;
+        let lastImageSwitch = 0;
+        const imageDisplayTime = 3000;
+
+        imageUrls.forEach(url => {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => {
+            loadedImages++;
+            if (loadedImages === imageUrls.length) {
+              console.log('Todas las imágenes cargadas');
+            }
+          };
+          img.onerror = () => {
+            loadedImages++;
+            console.error(`Error cargando imagen: ${url}`);
+          };
+          img.src = url;
+          images.push(img);
+        });
+
+        const drawDisplay = () => {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, displayCanvas.width, displayCanvas.height);
+          
+          const now = Date.now();
+          if (now - lastImageSwitch > imageDisplayTime && images.length > 0) {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            lastImageSwitch = now;
+          }
+          
+          if (images[currentImageIndex] && images[currentImageIndex].complete && images[currentImageIndex].naturalWidth > 0) {
+            const img = images[currentImageIndex];
+            
+            const padding = 20;
+            const availableWidth = displayCanvas.width - (padding * 2);
+            const availableHeight = displayCanvas.height - 60 - padding;
+            
+            const scale = Math.min(
+              availableWidth / img.width,
+              availableHeight / img.height
+            );
+            
+            const drawWidth = img.width * scale;
+            const drawHeight = img.height * scale;
+            const x = (displayCanvas.width - drawWidth) / 2;
+            const y = padding;
+            
+            ctx.drawImage(img, x, y, drawWidth, drawHeight);
+          } else {
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Cargando Servicios...', displayCanvas.width / 2, displayCanvas.height / 2);
+          }
+          
+          const gradient = ctx.createLinearGradient(0, displayCanvas.height - 60, 0, displayCanvas.height);
+          gradient.addColorStop(0, '#0066ff');
+          gradient.addColorStop(1, '#0044cc');
+          ctx.fillStyle = gradient;
+          ctx.fillRect(0, displayCanvas.height - 60, displayCanvas.width, 60);
+          
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 24px Arial';
+          ctx.textAlign = 'center';
+          ctx.fillText('Desarrollo Web - Sistemas - Software', displayCanvas.width / 2, displayCanvas.height - 20);
+        };
+
+        const displayTexture = new THREE.CanvasTexture(displayCanvas);
+        const display = new THREE.Mesh(
+          new THREE.PlaneGeometry(4.15, 2.4),
+          new THREE.MeshBasicMaterial({ map: displayTexture })
+        );
+        display.position.set(0, 1.25, 0.06);
+        screen.add(display);
+
+        function animate() {
+          requestAnimationFrame(animate);
+          
+          keyHue += rgbSpeed;
+          const rgbColor = new THREE.Color().setHSL(keyHue % 1, 1, 0.5);
+          
+          keys.forEach(key => {
+            key.children.forEach(child => {
+              if (child.userData.isKeyBorder) {
+                child.material.emissive.copy(rgbColor);
+                child.material.emissiveIntensity = 0.8;
+              }
+            });
+          });
+          
+          drawDisplay();
+          displayTexture.needsUpdate = true;
+          
+          const time = Date.now() / 1000;
+          rimLight.intensity = 0.5 + Math.sin(time * 2) * 0.1;
+          
+          controls.update();
+          renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        console.log('Laptop 3D cargada exitosamente');
+      } catch (error) {
+        console.error('Error al cargar la laptop 3D:', error);
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('error').textContent = 'Error: ' + error.message;
+        document.getElementById('loading').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
