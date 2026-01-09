@@ -239,7 +239,7 @@ laptop.add(touchpad);
         screen.add(bezel);
 
         const logoTextureLoader = new THREE.TextureLoader();
-        const logoBackTexture = logoTextureLoader.load('assets\img\fotos3D\logodeatras.jpg', () => {
+        const logoBackTexture = logoTextureLoader.load('assets/img/fotos3D/logodeatras.jpg', () => {
           console.log('Logo de la parte trasera cargado');
         }, undefined, (error) => {
           console.error('Error cargando logo trasero:', error);
@@ -260,9 +260,9 @@ laptop.add(touchpad);
 
         const images = [];
         const imageUrls = [
-          'assets\img\fotos3D\nomsbreaamt.jpg',
-          'assets\img\fotos3D\d5eb177b-96ca-41f4-9bd2-2296bcdce791.jpg',
-          'assets\img\fotos3D\caomaocmao.jpg',
+          'assets/img/fotos3D/nomsbreaamt.jpg',
+          'assets/img/fotos3D/d5eb177b-96ca-41f4-9bd2-2296bcdce791.jpg',
+          'assets/img/fotos3D/caomaocmao.jpg',
         ];
         let loadedImages = 0;
         let currentImageIndex = 0;
