@@ -28,7 +28,7 @@
   const ttLink = document.getElementById("ttLink");
 
   // Datos reales (NexoIT)
-  const COMPANY_WHATSAPP = "51982108849"; // +51 982108849 (sin +)
+  const COMPANY_WHATSAPP = "51925585217"; // +51 925585217 (sin +)
   const COMPANY_EMAIL = "nexoit90@gmail.com";
 
   // Links públicos (actualiza cuando tengas tus URLs oficiales)
