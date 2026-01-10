@@ -33,7 +33,7 @@
 
   // Links públicos (actualiza cuando tengas tus URLs oficiales)
   const SOCIAL = {
-    facebook: "https://www.facebook.com/",
+    facebook: "https://www.facebook.com/share/1J2pU7xaFT/",
     instagram: "https://www.instagram.com/",
     tiktok: "https://www.tiktok.com/@nexo.it"
   };
