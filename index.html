@@ -32,13 +32,90 @@
   <link rel="stylesheet" href="assets/css/animations.css" />
 
   <meta name="google-site-verification" content="rE6mjyDeGSheyMjDnbHSkG51iGWeP9cV8X5Xy6HRchg" />
+
+  <!-- Schema.org: Organización -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NexoIT",
+    "url": "https://nexoit.com",
+    "logo": "https://nexoit.com/assets/img/logo.jpg",
+    "description": "NexoIT: desarrollo de páginas web, apps, sistemas y software a medida. Automatizamos procesos para que tu negocio crezca.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "PE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+51925585217",
+      "email": "nexoit90@gmail.com",
+      "contactType": "customer service",
+      "availableLanguage": "Spanish"
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/1J2pU7xaFT/",
+      "https://www.tiktok.com/@nexo.it"
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo demoran en desarrollar una página web?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Una landing page puede estar lista en 1-2 semanas, mientras que un sitio web completo puede tomar 3-6 semanas. Siempre damos un cronograma claro antes de iniciar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Ofrecen mantenimiento y soporte?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, ofrecemos planes de mantenimiento que incluyen actualizaciones, seguridad, backups y soporte técnico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Realizan proyectos fuera de Perú?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, trabajamos con clientes de cualquier parte del mundo. La comunicación se realiza por WhatsApp, correo y videollamadas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué incluye la entrega final?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La entrega incluye el código fuente completo, documentación, guía de uso, despliegue en el servidor de tu elección y soporte inicial."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo funcionan los pagos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trabajamos con un anticipo inicial para comenzar y pagos por hitos según el avance. Los términos exactos se definen en la propuesta."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Preloader -->
   <div class="page-loader active" id="pageLoader">
     <div class="loader__content">
       <div class="loader__logo">
-        <img src="assets/img/logo.jpg" alt="NexoIT Logo" />
+        <img src="assets/img/logo.jpg" alt="NexoIT Logo" width="80" height="80" />
       </div>
       <div class="loader">
         <div class="loader__ring"></div>
@@ -65,7 +142,7 @@
   <header class="header" id="top">
     <div class="container header__inner">
       <a class="brand" href="#top" aria-label="Ir al inicio">
-        <img class="brand__logo" src="assets/img/logo.jpg" alt="Logo de NexoIT" />
+        <img class="brand__logo" src="assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" />
         <div class="brand__text">
           <span class="brand__name">NexoIT</span>
           <span class="brand__tag">Soluciones que conectan</span>
@@ -510,8 +587,9 @@
           <iframe
             src="laptop3D.html"
             class="laptop-iframe"
-            frameborder="0"
             title="Laptop 3D Interactiva"
+            sandbox="allow-scripts allow-same-origin"
+            loading="lazy"
           ></iframe>
         </div>
       </div>
@@ -664,6 +742,18 @@
           <p>Arquitectura, integración, automatización y desarrollo de soluciones.</p>
         </div>
       </article>
+
+      <!-- Para añadir foto: sube assets/img/team/diego.jpg y cambia a person--img con <img> igual que los otros -->
+      <article class="person person--avatar animate-on-scroll animate-delay-3">
+        <div class="person__avatar-placeholder">
+          <span>DE</span>
+        </div>
+        <div class="person__info">
+          <h3>Diego Espinoza Rodriges</h3>
+          <p class="muted">Desarrollador • Sistemas &amp; Backend</p>
+          <p>Desarrollo de sistemas, bases de datos, APIs y soluciones backend robustas.</p>
+        </div>
+      </article>
     </div>
   </div>
  </section>
@@ -752,7 +842,6 @@
               <img src="assets/img/icons/tiktok.svg" alt="" aria-hidden="true">
             </a>
           </div>
-          <p class="muted small">Puedes reemplazar los enlaces cuando tengas las URLs oficiales.</p>
         </div>
       </div>
 
@@ -764,14 +853,14 @@
           </label>
           <label>
             Número (WhatsApp)
-            <input required name="numero" placeholder="Tu número" inputmode="tel" autocomplete="tel" />
+            <input type="tel" required name="numero" placeholder="Tu número" inputmode="tel" autocomplete="tel" pattern="[0-9+\s\-]{7,15}" />
           </label>
         </div>
 
         <div class="row">
           <label>
             Correo
-            <input required name="correo" placeholder="tucorreo@email.com" autocomplete="email" />
+            <input type="email" required name="correo" placeholder="tucorreo@email.com" autocomplete="email" />
           </label>
           <label>
             ¿Qué necesitas?
@@ -806,7 +895,7 @@
   <div class="container footer__grid">
     <div>
       <div class="brand brand--footer">
-        <img class="brand__logo" src="assets/img/logo.jpg" alt="Logo de NexoIT" />
+        <img class="brand__logo" src="assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" />
         <div class="brand__text">
           <span class="brand__name">NexoIT</span>
           <span class="brand__tag">Soluciones que conectan</span>

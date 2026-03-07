@@ -1627,6 +1627,7 @@ input:hover, select:hover, textarea:hover {
   font-size:14px;
   display:-webkit-box;
   -webkit-line-clamp:3;
+  line-clamp:3;
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
@@ -1729,6 +1730,7 @@ input:hover, select:hover, textarea:hover {
   }
   .pcard__description{
     -webkit-line-clamp:4;
+    line-clamp:4;
   }
 }
 
@@ -2168,3 +2170,20 @@ input:hover, select:hover, textarea:hover {
 .faq__answer p{
   margin:0;
 }
+
+/* Fix rendimiento mobile: background-attachment:fixed causa repaints y no funciona en iOS */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    animation: none; /* pausar animación de gradiente en mobile para ahorrar batería */
+  }
+
+  body::before {
+    animation: none;
+  }
+
+  .particles {
+    display: none; /* partículas innecesarias en pantallas pequeñas */
+  }
+}
+

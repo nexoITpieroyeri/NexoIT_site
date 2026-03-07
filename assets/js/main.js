@@ -1,16 +1,23 @@
 // NexoIT - JS principal (menú, scroll, links, formulario WhatsApp)
 (() => {
-  // Preloader
+  // Preloader mejorado — desaparece cuando la página está lista, sin delay artificial
   const initPreloader = () => {
     const preloader = document.getElementById('pageLoader');
     if (!preloader) return;
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.body.classList.add('loaded');
-      }, 1500);
-    });
+    const hideLoader = () => {
+      preloader.classList.add('hidden');
+      document.body.classList.add('loaded');
+    };
+
+    if (document.readyState === 'complete') {
+      // Ya cargó antes de que se ejecutara el script
+      hideLoader();
+    } else {
+      window.addEventListener('load', hideLoader);
+      // Fallback de seguridad: máximo 4 segundos
+      setTimeout(hideLoader, 4000);
+    }
   };
   initPreloader();
 
@@ -34,7 +41,7 @@
   // Links públicos (actualiza cuando tengas tus URLs oficiales)
   const SOCIAL = {
     facebook: "https://www.facebook.com/share/1J2pU7xaFT/",
-    instagram: "https://www.instagram.com/",
+    instagram: null, // pon aquí tu URL de Instagram cuando la tengas
     tiktok: "https://www.tiktok.com/@nexo.it"
   };
 
@@ -130,9 +137,14 @@
     fbLink.rel = "noopener noreferrer";
   }
   if (igLink) {
-    igLink.href = SOCIAL.instagram;
-    igLink.target = "_blank";
-    igLink.rel = "noopener noreferrer";
+    if (SOCIAL.instagram) {
+      igLink.href = SOCIAL.instagram;
+      igLink.target = "_blank";
+      igLink.rel = "noopener noreferrer";
+    } else {
+      // Ocultar el botón si no hay URL real
+      igLink.style.display = 'none';
+    }
   }
   if (ttLink) {
     ttLink.href = SOCIAL.tiktok;
@@ -140,19 +152,31 @@
     ttLink.rel = "noopener noreferrer";
   }
 
-  // Formulario -> WhatsApp
+  // Formulario -> WhatsApp con feedback visual
   if (form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(form).entries());
-      const msg = buildMsg(data);
 
       // Validación simple
       if (!data.nombre || !data.numero || !data.correo || !data.necesita || !data.descripcion) {
         alert("Completa todos los campos para enviar tu solicitud.");
         return;
       }
-      
+
+      // Feedback visual
+      if (submitBtn) {
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Abriendo WhatsApp...';
+        submitBtn.disabled = true;
+        setTimeout(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 2500);
+      }
+
+      const msg = buildMsg(data);
       openWhatsApp(msg);
     });
   }
@@ -332,7 +356,7 @@
   };
   initParallax();
 
-  // Efecto de ripple en botones
+  // Efecto de ripple en botones (CSS estático en animations.css)
   const initRippleEffect = () => {
     const buttons = document.querySelectorAll('.btn');
     
@@ -343,36 +367,14 @@
         const y = e.clientY - rect.top;
         
         const ripple = document.createElement('span');
-        ripple.style.cssText = `
-          position: absolute;
-          background: rgba(255, 255, 255, 0.3);
-          border-radius: 50%;
-          width: 100px;
-          height: 100px;
-          left: ${x - 50}px;
-          top: ${y - 50}px;
-          transform: scale(0);
-          animation: ripple-animation 0.6s linear;
-          pointer-events: none;
-        `;
+        ripple.className = 'ripple-effect';
+        ripple.style.left = `${x - 50}px`;
+        ripple.style.top = `${y - 50}px`;
         
         this.appendChild(ripple);
-        
         setTimeout(() => ripple.remove(), 600);
       });
     });
-    
-    // Agregar estilo de ripple dinámicamente
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ripple-animation {
-        to {
-          transform: scale(4);
-          opacity: 0;
-        }
-      }
-    `;
-    document.head.appendChild(style);
   };
   initRippleEffect();
 
@@ -473,4 +475,14 @@
     });
   };
   initPortfolioFilters();
+
+  // Reducir animaciones si el usuario lo prefiere (accesibilidad)
+  const respectReducedMotion = () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      const particles = document.querySelector('.particles');
+      if (particles) particles.style.display = 'none';
+    }
+  };
+  respectReducedMotion();
 })();
