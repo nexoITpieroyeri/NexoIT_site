@@ -1,5 +1,13 @@
 // NexoIT - JS principal (menú, scroll, links, formulario WhatsApp)
 (() => {
+  // Efecto de glow para el fondo
+  const initGlowEffect = () => {
+    const glow = document.createElement('div');
+    glow.className = 'glow-effect';
+    document.body.appendChild(glow);
+  };
+  initGlowEffect();
+
   // Preloader mejorado — desaparece cuando la página está lista, sin delay artificial
   const initPreloader = () => {
     const preloader = document.getElementById('pageLoader');
@@ -285,23 +293,20 @@
   // Lightbox para imágenes de galería
   const initLightbox = () => {
     const galleryImages = document.querySelectorAll('.gallery img');
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxContent = lightbox?.querySelector('.lightbox__content');
-    const lightboxClose = lightbox?.querySelector('.lightbox__close');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
 
-    if (!lightbox || !lightboxContent) return;
+    if (!lightbox || !lightboxImg) return;
 
     galleryImages.forEach(img => {
+      img.style.cursor = 'pointer';
       img.addEventListener('click', () => {
-        const largeImg = document.createElement('img');
-        largeImg.src = img.src;
-        largeImg.alt = img.alt;
-        largeImg.className = 'lightbox__content';
-        largeImg.style.maxWidth = '90vw';
-        largeImg.style.maxHeight = '90vh';
-        largeImg.style.objectFit = 'contain';
-
-        lightboxContent.replaceWith(largeImg);
+        const src = img.src;
+        const alt = img.alt || 'Imagen del proyecto';
+        
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
@@ -310,11 +315,6 @@
     const closeLightbox = () => {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
-      setTimeout(() => {
-        const newContent = document.createElement('div');
-        newContent.className = 'lightbox__content';
-        lightbox.lastChild.replaceWith(newContent);
-      }, 300);
     };
 
     lightboxClose?.addEventListener('click', closeLightbox);
