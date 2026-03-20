@@ -1476,7 +1476,7 @@ input:hover, select:hover, textarea:hover {
 
 @media (max-width: 980px){
   .hero__grid{grid-template-columns: 1fr; }
-  .hero__copy h1{font-size:40px; min-height: 180px}
+  .hero__copy h1{font-size:40px; min-height: 140px}
   .grid3{grid-template-columns: 1fr}
   .video{grid-template-columns: 1fr}
   .steps{grid-template-columns: 1fr 1fr}
@@ -1491,7 +1491,7 @@ input:hover, select:hover, textarea:hover {
 }
 
 @media (max-width: 768px){
-  .hero__copy h1{font-size:36px; min-height: 160px}
+  .hero__copy h1{font-size:36px; min-height: 120px}
   .hero__cta{flex-direction:column}
   .hero__cta .btn{width:100%}
   .section{padding:48px 0}
