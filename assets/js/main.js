@@ -39,7 +39,7 @@
   const waLink = document.getElementById("waLink");
   const waFooter = document.getElementById("waFooter");
   const fbLink = document.getElementById("fbLink");
-  const igLink = document.getElementById("igLink");
+  const liLink = document.getElementById("liLink");
   const ttLink = document.getElementById("ttLink");
 
   // Datos reales (NexoIT)
@@ -49,7 +49,7 @@
   // Links públicos (actualiza cuando tengas tus URLs oficiales)
   const SOCIAL = {
     facebook: "https://www.facebook.com/share/1J2pU7xaFT/",
-    instagram: null, // pon aquí tu URL de Instagram cuando la tengas
+    linkedin: "https://www.linkedin.com/company/nexoittech/",
     tiktok: "https://www.tiktok.com/@nexo.it"
   };
 
@@ -144,14 +144,13 @@
     fbLink.target = "_blank";
     fbLink.rel = "noopener noreferrer";
   }
-  if (igLink) {
-    if (SOCIAL.instagram) {
-      igLink.href = SOCIAL.instagram;
-      igLink.target = "_blank";
-      igLink.rel = "noopener noreferrer";
+  if (liLink) {
+    if (SOCIAL.linkedin) {
+      liLink.href = SOCIAL.linkedin;
+      liLink.target = "_blank";
+      liLink.rel = "noopener noreferrer";
     } else {
-      // Ocultar el botón si no hay URL real
-      igLink.style.display = 'none';
+      liLink.style.display = 'none';
     }
   }
   if (ttLink) {
@@ -485,4 +484,29 @@
     }
   };
   respectReducedMotion();
+
+  // Testimonial Navigation
+  const initTestimonialNav = () => {
+    const navButtons = document.querySelectorAll('.testimonial-nav');
+    const slides = document.querySelectorAll('.testimonial-slide');
+
+    if (!navButtons.length || !slides.length) return;
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = btn.dataset.index;
+
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        slides.forEach(slide => {
+          slide.classList.remove('active');
+          if (slide.dataset.slide === index) {
+            slide.classList.add('active');
+          }
+        });
+      });
+    });
+  };
+  initTestimonialNav();
 })();
