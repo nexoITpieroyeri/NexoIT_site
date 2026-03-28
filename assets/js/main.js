@@ -24,7 +24,6 @@
 
   const navBtn = document.getElementById("navbtn");
   const nav = document.getElementById("nav");
-  const toTop = document.getElementById("totop");
   const year = document.getElementById("year");
   const form = document.getElementById("form");
   const copyBtn = document.getElementById("copy");
@@ -69,13 +68,8 @@
     });
   }
 
-  // Botón subir y efectos en header
+  // Efecto en header al hacer scroll
   const onScroll = () => {
-    if (!toTop) return;
-    const show = window.scrollY > 400;
-    toTop.classList.toggle("show", show);
-    
-    // Efecto en header al hacer scroll
     const header = document.querySelector('.header');
     if (header) {
       if (window.scrollY > 50) {
@@ -89,10 +83,6 @@
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
-
-  if (toTop) {
-    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  }
 
   // Helpers
   const buildMsg = (data) => {
@@ -495,7 +485,7 @@
     const groups = [
       '.grid3 .svc',
       '.steps .step',
-      '.pricing .price',
+      '.panel.active .plan-card',
       '.team--cards .person'
     ];
 
@@ -513,5 +503,10 @@
     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('panel-' + id).classList.add('active');
     btn.classList.add('active');
+  };
+
+  window.cotizarPlan = function(plan, precio, desc) {
+    const msg = encodeURIComponent('Hola, muy buenas tardes, me contacto con ustedes, me interese en el plan ' + plan + ' (desde ' + precio + ' USD). ' + desc);
+    window.open('https://wa.me/51925585217?text=' + msg, '_blank');
   };
 })();
