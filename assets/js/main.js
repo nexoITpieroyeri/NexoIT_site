@@ -505,8 +505,43 @@
     btn.classList.add('active');
   };
 
-  window.cotizarPlan = function(plan, precio, desc) {
-    const msg = encodeURIComponent('Hola, muy buenas tardes, me contacto con ustedes, me interese en el plan ' + plan + ' (desde ' + precio + ' USD). ' + desc);
-    window.open('https://wa.me/51925585217?text=' + msg, '_blank');
+  const waForm = document.getElementById('waForm');
+  const waModal = document.getElementById('waModal');
+
+  window.openWaModal = function() {
+    document.getElementById('waPlan').value = '';
+    document.getElementById('waPrice').value = '';
+    document.getElementById('waDesc').value = '';
+    waModal.classList.add('open');
   };
+
+  window.closeWaModal = function() {
+    waModal.classList.remove('open');
+  };
+
+  waModal.addEventListener('click', function(e) {
+    if (e.target === waModal) closeWaModal();
+  });
+
+  window.cotizarPlan = function(plan, precio, desc) {
+    document.getElementById('waPlan').value = plan;
+    document.getElementById('waPrice').value = precio;
+    document.getElementById('waDesc').value = desc;
+    waModal.classList.add('open');
+  };
+
+  waForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('waName').value.trim();
+    const plan = document.getElementById('waPlan').value;
+    const precio = document.getElementById('waPrice').value;
+    const desc = document.getElementById('waDesc').value;
+
+    let msg = 'Hola, qué tal, soy ' + name + ', estoy interesado en sus servicios que brindan';
+    if (plan) {
+      msg += ', específicamente en el plan ' + plan + ' (desde ' + precio + ' USD). ' + desc;
+    }
+    window.open('https://wa.me/51925585217?text=' + encodeURIComponent(msg), '_blank');
+    closeWaModal();
+  });
 })();
