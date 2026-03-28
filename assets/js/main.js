@@ -507,4 +507,11 @@
     });
   };
   initStaggerObserver();
+
+  window.showPlan = function(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  };
 })();

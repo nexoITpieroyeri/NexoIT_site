@@ -556,51 +556,214 @@
     <section class="section" id="planes">
       <div class="container">
         <div class="section__head">
-          <h2>Planes referenciales</h2>
-          <p>Precios orientativos. Te damos una cotización final según alcance, plazo y funcionalidades.</p>
+          <p class="section-label">Precios referenciales</p>
+          <h2>Planes para tu negocio</h2>
+          <p class="subtitle">Selecciona la categoría que necesitas. La cotización final varía según alcance.</p>
         </div>
 
-        <div class="pricing">
-          <article class="price">
-            <h3>Starter</h3>
-            <p class="price__p">Ideal para comenzar</p>
-            <div class="price__k">Landing</div>
-            <ul class="check">
-              <li>1 página (secciones)</li>
-              <li>Formulario + WhatsApp</li>
-              <li>Diseño responsive</li>
-              <li>Entrega rápida</li>
-            </ul>
-            <a class="btn btn--ghost btn--full" href="#contacto" data-plan="Starter">Cotizar</a>
-          </article>
+        <div class="categories">
+          <button class="cat-btn active" onclick="showPlan('web', this)">
+            <div class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name">Páginas Web</div>
+              <div class="cat-count">3 planes</div>
+            </div>
+          </button>
 
-          <article class="price price--hot">
+          <button class="cat-btn" onclick="showPlan('sistemas', this)">
+            <div class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17 14v7"/>
+              </svg>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name">Sistemas</div>
+              <div class="cat-count">2 planes</div>
+            </div>
+          </button>
+
+          <button class="cat-btn" onclick="showPlan('apps', this)">
+            <div class="cat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="2" width="10" height="20" rx="2"/>
+                <circle cx="12" cy="18" r="1" fill="#2ef59a" stroke="none"/>
+              </svg>
+            </div>
+            <div class="cat-info">
+              <div class="cat-name">Apps</div>
+              <div class="cat-count">2 planes</div>
+            </div>
+          </button>
+        </div>
+
+        <div id="panel-web" class="panel active">
+          <div class="plan-card">
+            <p class="plan-tag">Landing Page</p>
+            <h3 class="plan-name">Starter</h3>
+            <p class="plan-desc">Para emprendedores y marcas que quieren captar clientes rápido.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">220</span>
+            </div>
+            <p class="price-note">Pago único · Entrega 7-12 días hábiles</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>1 página con 3 a 5 secciones</li>
+              <li>Diseño moderno y responsive</li>
+              <li>Hero, servicios, contacto y WhatsApp</li>
+              <li>Formulario de contacto</li>
+              <li>Optimización de velocidad</li>
+            </ul>
+            <a href="#contacto" class="btn btn-outline">Cotizar ahora</a>
+          </div>
+
+          <div class="plan-card featured">
             <div class="badge">Más pedido</div>
-            <h3>Business</h3>
-            <p class="price__p">Para vender y crecer</p>
-            <div class="price__k">Web Pro</div>
-            <ul class="check">
-              <li>Multi‑sección + páginas extra</li>
-              <li>SEO básico + velocidad</li>
-              <li>Panel simple / catálogo</li>
-              <li>Soporte inicial</li>
+            <p class="plan-tag">Web Empresarial</p>
+            <h3 class="plan-name">Business</h3>
+            <p class="plan-desc">Presencia digital completa con panel de administración.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">350</span>
+            </div>
+            <p class="price-note">Pago único · Entrega 2-3 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Hasta 8 secciones / páginas internas</li>
+              <li>Diseño profesional personalizado</li>
+              <li>Panel de administración de contenido</li>
+              <li>SEO básico (metatags, velocidad, sitemap)</li>
+              <li>WhatsApp, correo y formularios avanzados</li>
+              <li>Soporte técnico 30 días</li>
             </ul>
-            <a class="btn btn--full" href="#contacto" data-plan="Business">Cotizar</a>
-          </article>
+            <a href="#contacto" class="btn btn-filled">Cotizar ahora</a>
+          </div>
 
-          <article class="price">
-            <h3>Custom</h3>
-            <p class="price__p">Sistema / app a medida</p>
-            <div class="price__k">Software</div>
-            <ul class="check">
-              <li>Roles y permisos</li>
-              <li>Base de datos + APIs</li>
-              <li>Dashboard + reportes</li>
-              <li>Despliegue + capacitación</li>
+          <div class="plan-card">
+            <p class="plan-tag">Tienda Online</p>
+            <h3 class="plan-name">E-commerce</h3>
+            <p class="plan-desc">Para negocios que venden productos y quieren una tienda funcional.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">450</span>
+            </div>
+            <p class="price-note">Pago en etapas · Entrega 3-5 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Catálogo de productos con filtros</li>
+              <li>Carrito de compras</li>
+              <li>Panel admin para stock y pedidos</li>
+              <li>Pasarela de pagos (Yape, Stripe…)</li>
+              <li>Diseño responsive y optimizado</li>
+              <li>Soporte 30 días</li>
             </ul>
-            <a class="btn btn--ghost btn--full" href="#contacto" data-plan="Custom">Cotizar</a>
-          </article>
+            <a href="#contacto" class="btn btn-outline">Cotizar ahora</a>
+          </div>
         </div>
+
+        <div id="panel-sistemas" class="panel">
+          <div class="plan-card">
+            <p class="plan-tag">Gestión</p>
+            <h3 class="plan-name">Sistema Básico</h3>
+            <p class="plan-desc">Digitaliza y automatiza los procesos internos de tu empresa.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">380</span>
+            </div>
+            <p class="price-note">Pago en etapas · Entrega 3-5 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Panel administrativo (dashboard)</li>
+              <li>Módulos de clientes, ventas o inventario</li>
+              <li>Gestión de usuarios y roles</li>
+              <li>Base de datos estructurada</li>
+              <li>Reportes exportables</li>
+              <li>Soporte técnico 30 días</li>
+            </ul>
+            <a href="#contacto" class="btn btn-outline">Cotizar ahora</a>
+          </div>
+
+          <div class="plan-card featured">
+            <div class="badge">Más pedido</div>
+            <p class="plan-tag">Plataforma SaaS</p>
+            <h3 class="plan-name">SaaS Completo</h3>
+            <p class="plan-desc">Plataforma multi-usuario con suscripciones o gestión avanzada.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">550</span>
+            </div>
+            <p class="price-note">Pago en etapas · Entrega 6-10 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Arquitectura multi-tenant (SaaS)</li>
+              <li>Autenticación con roles y permisos</li>
+              <li>Dashboard con métricas en tiempo real</li>
+              <li>Módulos a medida (CRM, reservas…)</li>
+              <li>APIs REST para integraciones</li>
+              <li>Despliegue en servidor + capacitación 60 días</li>
+            </ul>
+            <a href="#contacto" class="btn btn-filled">Cotizar ahora</a>
+          </div>
+        </div>
+
+        <div id="panel-apps" class="panel">
+          <div class="plan-card featured">
+            <div class="badge">Más pedido</div>
+            <p class="plan-tag">App Web</p>
+            <h3 class="plan-name">PWA</h3>
+            <p class="plan-desc">App instalable desde el navegador, sin publicar en tiendas.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">500</span>
+            </div>
+            <p class="price-note">Pago en etapas · Entrega 3-5 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Funciona en celular, tablet y PC</li>
+              <li>Instalable desde el navegador</li>
+              <li>Login de usuarios y roles</li>
+              <li>Notificaciones push</li>
+              <li>Funcionamiento offline básico</li>
+              <li>Backend con API REST</li>
+            </ul>
+            <a href="#contacto" class="btn btn-filled">Cotizar ahora</a>
+          </div>
+
+          <div class="plan-card">
+            <p class="plan-tag">App Móvil</p>
+            <h3 class="plan-name">App Nativa</h3>
+            <p class="plan-desc">App publicada en Google Play y/o App Store con Flutter.</p>
+            <div class="price-row">
+              <span class="price-from">Desde</span>
+              <span class="price-num">750</span>
+            </div>
+            <p class="price-note">Pago en etapas · Entrega 6-12 semanas</p>
+            <div class="divider"></div>
+            <p class="feat-title">Incluye</p>
+            <ul class="features">
+              <li>Android e iOS desde un solo código (Flutter)</li>
+              <li>Login, registro y perfiles de usuario</li>
+              <li>Integración con backend (API / Firebase)</li>
+              <li>Notificaciones push</li>
+              <li>Diseño UX/UI moderno y fluido</li>
+              <li>Publicación en Google Play + soporte 60 días</li>
+            </ul>
+            <a href="#contacto" class="btn btn-outline">Cotizar ahora</a>
+          </div>
+        </div>
+
+        <p class="footer-note">¿Necesitas algo diferente? <span>Escríbenos</span> y armamos un plan a tu medida.</p>
       </div>
     </section>
 
