@@ -1,12 +1,5 @@
 // NexoIT - JS principal (menú, scroll, links, formulario WhatsApp)
 (() => {
-  // Efecto de glow para el fondo
-  const initGlowEffect = () => {
-    const glow = document.createElement('div');
-    glow.className = 'glow-effect';
-    document.body.appendChild(glow);
-  };
-  initGlowEffect();
 
   // Preloader mejorado — desaparece cuando la página está lista, sin delay artificial
   const initPreloader = () => {
@@ -329,53 +322,6 @@
   };
   initLightbox();
 
-  // Efecto de parallax suave en imágenes
-  const initParallax = () => {
-    const parallaxImages = document.querySelectorAll('.pcard__media img, .person__img');
-    
-    parallaxImages.forEach(img => {
-      img.addEventListener('mousemove', (e) => {
-        const rect = img.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        img.style.transform = `scale(1.05) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-      
-      img.addEventListener('mouseleave', () => {
-        img.style.transform = 'scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      });
-    });
-  };
-  initParallax();
-
-  // Efecto de ripple en botones (CSS estático en animations.css)
-  const initRippleEffect = () => {
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple-effect';
-        ripple.style.left = `${x - 50}px`;
-        ripple.style.top = `${y - 50}px`;
-        
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-  };
-  initRippleEffect();
 
   // Smooth scroll mejorado para navegación
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -509,4 +455,56 @@
     });
   };
   initTestimonialNav();
+
+  // === ENTERPRISE UPGRADE ===
+
+  // Auto-rotate Testimonials every 6 seconds
+  const initTestimonialAutoRotate = () => {
+    const navButtons = document.querySelectorAll('.testimonial-nav');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    if (!navButtons.length || !slides.length) return;
+
+    let currentIndex = 0;
+    let isPaused = false;
+    const container = document.querySelector('.testimonials-split');
+
+    const goToSlide = (index) => {
+      navButtons.forEach(b => b.classList.remove('active'));
+      slides.forEach(s => s.classList.remove('active'));
+      if (navButtons[index]) navButtons[index].classList.add('active');
+      if (slides[index]) slides[index].classList.add('active');
+      currentIndex = index;
+    };
+
+    setInterval(() => {
+      if (!isPaused) {
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+      }
+    }, 6000);
+
+    if (container) {
+      container.addEventListener('mouseenter', () => isPaused = true);
+      container.addEventListener('mouseleave', () => isPaused = false);
+    }
+  };
+  initTestimonialAutoRotate();
+
+  // Stagger animation observer for grouped elements
+  const initStaggerObserver = () => {
+    const groups = [
+      '.grid3 .svc',
+      '.steps .step',
+      '.pricing .price',
+      '.team--cards .person'
+    ];
+
+    groups.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach((el, i) => {
+        el.classList.add(`stagger-${Math.min(i + 1, 6)}`);
+      });
+    });
+  };
+  initStaggerObserver();
 })();

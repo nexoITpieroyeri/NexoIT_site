@@ -1815,6 +1815,7 @@ input:hover, select:hover, textarea:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.pcard__description{
   margin:0;
   color:rgba(234,242,255,.76);
   line-height:1.6;
@@ -2476,5 +2477,604 @@ input:hover, select:hover, textarea:hover {
   .particles {
     display: none; /* partículas innecesarias en pantallas pequeñas */
   }
+}
+
+/* ===== FINAL PROFESSIONAL POLISH ===== */
+
+/* Section heading decorative underline */
+.section__head h2 {
+  display: inline-block;
+  position: relative;
+}
+.section__head h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+.section__head:hover h2::after {
+  width: 100%;
+}
+
+/* Footer links: underline on hover */
+.footer__col a {
+  position: relative;
+}
+.footer__col a::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  transition: width 0.4s ease;
+}
+.footer__col a:hover::after {
+  width: 100%;
+}
+
+/* Portfolio year styling */
+.pcard__year {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(46,245,154,.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(46,245,154,.15);
+  white-space: nowrap;
+}
+
+/* Form enhanced focus glow */
+input:focus, select:focus, textarea:focus {
+  background: rgba(7,11,18,.5);
+}
+
+/* Stagger animation classes for scroll reveal */
+.stagger-1 { transition-delay: 0.05s !important; }
+.stagger-2 { transition-delay: 0.1s !important; }
+.stagger-3 { transition-delay: 0.15s !important; }
+.stagger-4 { transition-delay: 0.2s !important; }
+.stagger-5 { transition-delay: 0.25s !important; }
+.stagger-6 { transition-delay: 0.3s !important; }
+
+/* ===== STATIC MODE: No movement on hover ===== */
+.svc:hover, .pcard:hover, .price:hover, .person:hover,
+.step:hover, .mini:hover, .contactcard:hover,
+.hero__card .card:hover, .laptop3d:hover,
+.stat:hover, .chip:hover, .faq__item:hover,
+.video__player:hover, .video__side:hover,
+.contactcard__link:hover, .check li:hover,
+.ul li:hover, .pill:hover, .price--hot:hover,
+.btn:hover, .nav a:hover, .footer__col a:hover,
+.brand:hover .brand__logo, .social__btn:hover,
+.totop:hover, .navbtn:hover, .pcard__media:hover img,
+.testimonial-nav:hover, .testimonial-nav.active,
+.person:hover .avatar, .person:hover .person__avatar-placeholder,
+.person:hover .person__img {
+  transform: none !important;
+}
+
+/* Remove all pseudo-element decorations */
+.svc::before, .svc::after,
+.pcard::after, .price::before, .price::after,
+.person::after, .step::before,
+.contactcard::before, .contactcard__link::before,
+.btn::before, .stat::after, .chip::before,
+.totop::before, .hero__card .card::before,
+.laptop3d::before, .header::after,
+.faq__item::before, .faq__item::after {
+  display: none !important;
+}
+
+/* Remove decorative animations */
+.particles { display: none !important; }
+.glow-effect { display: none !important; }
+.pcard__badge { animation: none !important; }
+body { animation: none !important; }
+body::before { animation: none !important; }
+
+/* Service icon: color glow only */
+.svc:hover .svc__icon svg {
+  color: var(--green);
+  filter: drop-shadow(0 0 8px rgba(46,245,154,.4));
+  transform: none !important;
+}
+
+/* Subtle hover effects: color & border only */
+.svc:hover, .pcard:hover, .price:hover, .person:hover {
+  border-color: rgba(46,245,154,.2);
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+.contactcard:hover {
+  border-color: rgba(46,245,154,.2);
+}
+.social__btn:hover {
+  background: rgba(46,245,154,.1);
+  border-color: rgba(46,245,154,.2);
+}
+.faq__item[open] {
+  border-color: rgba(46,245,154,.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Smooth scroll-reveal */
+.animate-on-scroll {
+  transition: opacity 1s ease, transform 1s ease !important;
+}
+.animate-slide-left, .animate-slide-right {
+  transition: opacity 1s ease, transform 1s ease !important;
+}
+.animate-scale-in {
+  transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+.animate-blur-in {
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease !important;
+}
+
+/* Gradient text: slower for elegance */
+.gradient-animated {
+  animation: gradient-text 8s ease infinite !important;
+}
+
+/* Pulse dot: slower */
+.pulse {
+  animation: pulse 3s infinite !important;
+}
+
+
+
+
+
+
+/* Steps: hover lift + number glow */
+.step {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(46,245,154,.06), transparent);
+  transition: left 0.6s ease;
+}
+.step:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(46,245,154,.25);
+  box-shadow: 0 15px 40px rgba(0,0,0,.25), 0 0 20px rgba(46,245,154,.08);
+}
+.step:hover::before {
+  left: 100%;
+}
+.step__n {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.step:hover .step__n {
+  background: rgba(46,245,154,.28);
+  border-color: rgba(46,245,154,.45);
+  box-shadow: 0 0 20px rgba(46,245,154,.25);
+  transform: scale(1.1);
+}
+
+/* Mini cards hover (hero card) */
+.mini {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+}
+.mini:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(46,245,154,.2);
+  transform: translateX(4px);
+}
+
+/* Price cards: shimmer sweep */
+.price {
+  overflow: hidden;
+}
+.price::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.05), transparent);
+  transition: left 0.6s ease;
+}
+.price:hover::before {
+  left: 100%;
+}
+
+/* Footer links: slide-in underline + slide */
+.footer__col a {
+  position: relative;
+}
+.footer__col a::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+  transition: width 0.3s ease;
+}
+.footer__col a:hover {
+  transform: translateX(6px);
+}
+.footer__col a:hover::after {
+  width: 100%;
+}
+
+/* Contact cards enhanced hover */
+.contactcard {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+.contactcard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(46,245,154,.06), transparent);
+  transition: left 0.6s ease;
+}
+.contactcard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(46,245,154,.25);
+  box-shadow: 0 15px 40px rgba(0,0,0,.2), 0 0 20px rgba(46,245,154,.1);
+}
+.contactcard:hover::before {
+  left: 100%;
+}
+
+/* Contact link slide */
+.contactcard__link {
+  position: relative;
+  overflow: hidden;
+}
+.contactcard__link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(46,245,154,.08), transparent);
+  transition: left 0.5s ease;
+}
+.contactcard__link:hover {
+  transform: translateX(4px);
+}
+.contactcard__link:hover::before {
+  left: 100%;
+}
+
+/* Social buttons: bounce + rotate icon */
+.social__btn {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.social__btn:hover {
+  transform: translateY(-4px) scale(1.1) !important;
+  box-shadow: 0 8px 25px rgba(46,245,154,.2);
+}
+.social__btn img {
+  transition: transform 0.6s ease;
+}
+.social__btn:hover img {
+  transform: rotate(360deg);
+}
+
+/* Video section hover */
+.video__player {
+  transition: all 0.4s ease;
+}
+.video__player:hover {
+  transform: scale(1.01);
+  box-shadow: 0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(46,245,154,.1);
+  border-color: rgba(46,245,154,.2);
+}
+.video__side {
+  transition: all 0.4s ease;
+}
+.video__side:hover {
+  transform: translateY(-4px);
+  border-color: rgba(46,245,154,.2);
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+
+/* Check list items hover */
+.check li {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.check li:hover {
+  transform: translateX(6px);
+  color: var(--text);
+}
+
+/* UL list items hover */
+.ul li {
+  transition: all 0.3s ease;
+}
+.ul li:hover {
+  transform: translateX(4px);
+  color: var(--text);
+}
+
+/* Pill hover */
+.pill {
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.pill:hover {
+  border-color: rgba(46,245,154,.25);
+  background: rgba(255,255,255,.08);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+
+/* Brand logo hover */
+.brand__logo {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.brand:hover .brand__logo {
+  transform: rotate(5deg) scale(1.08);
+  border-color: rgba(46,245,154,.3);
+  box-shadow: 0 0 20px rgba(46,245,154,.2);
+}
+
+/* Portfolio badge pulse */
+.pcard__badge {
+  animation: badge-pulse 3s ease-in-out infinite;
+}
+@keyframes badge-pulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(46,245,154,.3); }
+  50% { box-shadow: 0 4px 20px rgba(46,245,154,.5); }
+}
+
+/* Portfolio year styling */
+.pcard__year {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(46,245,154,.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(46,245,154,.15);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+.pcard:hover .pcard__year {
+  background: rgba(46,245,154,.15);
+  border-color: rgba(46,245,154,.3);
+  box-shadow: 0 0 10px rgba(46,245,154,.15);
+}
+
+/* Form enhanced focus glow */
+input:focus, select:focus, textarea:focus {
+  background: rgba(7,11,18,.5);
+}
+
+/* Testimonial nav enhanced */
+.testimonial-nav {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+.testimonial-nav:hover {
+  transform: translateX(6px);
+}
+.testimonial-nav.active {
+  transform: translateX(8px);
+}
+
+/* Avatar text bounce on hover */
+.person:hover .avatar span,
+.person:hover .person__avatar-placeholder span {
+  animation: avatar-bounce 0.4s ease;
+}
+@keyframes avatar-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Hero card 3D tilt support */
+.hero__card .card {
+  transform-style: preserve-3d;
+}
+
+/* Stagger animation classes */
+.stagger-1 { transition-delay: 0.05s !important; }
+.stagger-2 { transition-delay: 0.1s !important; }
+.stagger-3 { transition-delay: 0.15s !important; }
+.stagger-4 { transition-delay: 0.2s !important; }
+.stagger-5 { transition-delay: 0.25s !important; }
+.stagger-6 { transition-delay: 0.3s !important; }
+
+/* ===== STATIC MODE: Remove ALL hover movement for performance ===== */
+/* Cards stay in place — only color, glow, border, shimmer effects */
+.svc:hover, .pcard:hover, .price:hover, .person:hover,
+.step:hover, .mini:hover, .contactcard:hover,
+.hero__card .card:hover, .laptop3d:hover,
+.stat:hover, .chip:hover, .faq__item:hover,
+.video__player:hover, .video__side:hover,
+.contactcard__link:hover, .check li:hover,
+.ul li:hover, .pill:hover,
+.price--hot:hover {
+  transform: none !important;
+}
+.btn:hover {
+  transform: none !important;
+}
+.nav a:hover {
+  transform: none !important;
+}
+.testimonial-nav:hover,
+.testimonial-nav.active {
+  transform: none !important;
+}
+.footer__col a:hover {
+  transform: none !important;
+}
+.brand:hover .brand__logo {
+  transform: none !important;
+}
+.social__btn:hover {
+  transform: none !important;
+}
+.person:hover .avatar,
+.person:hover .person__avatar-placeholder {
+  transform: none !important;
+}
+.person:hover .person__img {
+  transform: none !important;
+}
+.totop:hover {
+  transform: none !important;
+}
+.navbtn:hover {
+  transform: none !important;
+}
+.pcard__media:hover img {
+  transform: none !important;
+}
+
+/* ===== PROFESSIONAL STATIC: Disable remaining animations/effects ===== */
+
+/* Remove shimmer sweep ::before on all cards */
+.svc::before,
+.step::before,
+.price::before,
+.contactcard::before,
+.contactcard__link::before,
+.btn::before,
+.stat::after,
+.chip::before,
+.totop::before {
+  display: none !important;
+}
+
+/* Remove hover glow overlays on cards */
+.svc::after, .pcard::after, .price::after, .person::after {
+  display: none !important;
+}
+
+/* Remove hero card conic rotation */
+.hero__card .card::before,
+.laptop3d::before {
+  display: none !important;
+}
+
+/* Remove service icon animation on hover — keep color only */
+.svc:hover .svc__icon svg {
+  transform: none !important;
+  filter: drop-shadow(0 0 8px rgba(46,245,154,.4)) !important;
+}
+
+/* Remove badge pulse */
+.pcard__badge {
+  animation: none !important;
+}
+
+/* Remove social icon rotation */
+.social__btn:hover img {
+  transform: none !important;
+}
+
+/* Remove avatar bounce */
+.person:hover .avatar span,
+.person:hover .person__avatar-placeholder span {
+  animation: none !important;
+}
+
+/* Remove header hover line */
+.header::after {
+  display: none !important;
+}
+
+/* Remove particles */
+.particles {
+  display: none !important;
+}
+
+/* Remove glow-effect div */
+.glow-effect {
+  display: none !important;
+}
+
+/* Slow down / remove body background animation */
+body {
+  animation: none !important;
+}
+body::before {
+  animation: none !important;
+}
+
+/* Keep pulse dot subtle but slower */
+.pulse {
+  animation: pulse 3s infinite !important;
+}
+
+/* Smooth scroll-reveal: slower, gentler */
+.animate-on-scroll {
+  transition: opacity 1s ease, transform 1s ease !important;
+}
+.animate-slide-left,
+.animate-slide-right {
+  transition: opacity 1s ease, transform 1s ease !important;
+}
+.animate-scale-in {
+  transition: opacity 0.8s ease, transform 0.8s ease !important;
+}
+.animate-blur-in {
+  transition: opacity 0.8s ease, filter 0.8s ease, transform 0.8s ease !important;
+}
+
+/* Gradient text: keep but slow down */
+.gradient-animated {
+  animation: gradient-text 8s ease infinite !important;
+}
+
+/* Section heading underline: smooth */
+.section__head h2::after {
+  transition: width 0.6s ease !important;
+}
+
+/* Footer link underline: smooth */
+.footer__col a::after {
+  transition: width 0.4s ease !important;
+}
+
+/* Hover effects: only subtle glow/border — no box-shadow extremes */
+.svc:hover, .pcard:hover, .price:hover, .person:hover {
+  box-shadow: 0 12px 30px rgba(0,0,0,.2) !important;
+}
+
+/* FAQ item — smooth open only, no hover movement */
+.faq__item:hover {
+  transform: none !important;
+}
+.faq__item::before {
+  display: none !important;
+}
+.faq__item::after {
+  display: none !important;
+}
+.faq__item[open] {
+  box-shadow: 0 8px 20px rgba(0,0,0,.15) !important;
 }
 
