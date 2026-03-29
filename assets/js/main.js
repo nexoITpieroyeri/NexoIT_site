@@ -195,24 +195,6 @@
     });
   }
 
-  // Renderizar estrellas en el portafolio
-  const renderStars = () => {
-    const starElements = document.querySelectorAll(".stars");
-    starElements.forEach(starContainer => {
-      const rating = parseInt(starContainer.dataset.rating) || 0;
-      let starsHTML = "";
-      const starSVG = `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-      
-      for (let i = 0; i < 5; i++) {
-        const isFilled = i < rating;
-        starsHTML += `<span class="star ${isFilled ? "" : "star--off"}">${starSVG}</span>`;
-      }
-      
-      starContainer.innerHTML = starsHTML;
-    });
-  };
-  renderStars();
-
   // Animación de scroll para elementos
   const observeElements = () => {
     const observer = new IntersectionObserver((entries) => {
@@ -271,46 +253,6 @@
     stats.forEach(stat => observer.observe(stat));
   };
   animateNumbers();
-
-  // Lightbox para imágenes de galería
-  const initLightbox = () => {
-    const galleryImages = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-
-    if (!lightbox || !lightboxImg) return;
-
-    galleryImages.forEach(img => {
-      img.style.cursor = 'pointer';
-      img.addEventListener('click', () => {
-        const src = img.src;
-        const alt = img.alt || 'Imagen del proyecto';
-        
-        lightboxImg.src = src;
-        lightboxImg.alt = alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    const closeLightbox = () => {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-
-    lightboxClose?.addEventListener('click', closeLightbox);
-    lightbox?.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
-    });
-  };
-  initLightbox();
 
 
   // Smooth scroll mejorado para navegación
@@ -382,8 +324,12 @@
       filter.addEventListener('click', () => {
         const category = filter.dataset.filter;
 
-        filters.forEach(f => f.classList.remove('active'));
+        filters.forEach(f => {
+          f.classList.remove('active');
+          f.setAttribute('aria-pressed', 'false');
+        });
         filter.classList.add('active');
+        filter.setAttribute('aria-pressed', 'true');
 
         projects.forEach(project => {
           const projectCategory = project.dataset.category;
