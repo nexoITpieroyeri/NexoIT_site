@@ -1,0 +1,26 @@
+/* React-specific overrides */
+.react-window-list {
+  overflow-x: hidden !important;
+}
+
+.react-window-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.react-window-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.react-window-list::-webkit-scrollbar-thumb {
+  background: rgba(46, 245, 154, 0.3);
+  border-radius: 3px;
+}
+
+.react-window-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(46, 245, 154, 0.5);
+}
+
+#root {
+  min-height: 100vh;
+}
