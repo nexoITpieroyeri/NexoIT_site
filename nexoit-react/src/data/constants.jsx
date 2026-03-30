@@ -302,7 +302,7 @@ export const TESTIMONIALS = [
     author: 'Carlos Rodríguez',
     company: 'Gerente de Operaciones · Sistema de Préstamo con Bot',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face',
-    navImage: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop&crop=face',
+    navImage: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=120&h=120&fit=crop=face',
     project: 'Sistema de Préstamo con Bot'
   },
   {
