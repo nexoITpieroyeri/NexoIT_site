@@ -15,7 +15,6 @@ import Footer from './components/Footer';
 import WhatsAppFloat, { WhatsAppModal } from './components/WhatsAppFloat';
 import ScrollAnimations from './components/ScrollAnimations';
 import PixelSnow from './components/PixelSnow';
-import FuzzyOverlay from './components/FuzzyOverlay';
 import ProjectDetails from './components/ProjectDetails';
 
 function App() {
@@ -33,19 +32,19 @@ function App() {
   return (
     <>
       <Preloader />
-      <FuzzyOverlay />
       <PixelSnow
-        color="#ffffff"
-        variant="round"
+        color="#0000ff"
         flakeSize={0.01}
         minFlakeSize={1.25}
         pixelResolution={200}
         speed={1.25}
-        density={0.3}
-        direction={125}
-        brightness={1}
         depthFade={8}
         farPlane={20}
+        brightness={1}
+        gamma={0.4545}
+        density={0.3}
+        variant="snowflake"
+        direction={125}
         style={{
           position: 'fixed',
           top: 0,
