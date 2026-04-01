@@ -14,9 +14,13 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloat, { WhatsAppModal } from './components/WhatsAppFloat';
 import ScrollAnimations from './components/ScrollAnimations';
+import PixelSnow from './components/PixelSnow';
+import FuzzyOverlay from './components/FuzzyOverlay';
+import ProjectDetails from './components/ProjectDetails';
 
 function App() {
   const [waModal, setWaModal] = useState({ open: false, plan: '', price: '', desc: '' });
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const handleCotizar = useCallback((plan, price, desc) => {
     setWaModal({ open: true, plan, price, desc });
@@ -29,33 +33,35 @@ function App() {
   return (
     <>
       <Preloader />
-
-      <div className="particles">
-        {[...Array(9)].map((_, i) => (
-          <div className="particle" key={i}></div>
-        ))}
-      </div>
+      <FuzzyOverlay />
+      <PixelSnow color="#0080ff" variant="snowflake" count={80} />
 
       <a className="skip" href="#contenido">Saltar al contenido</a>
 
-      <Header />
+      <Header onNavClick={() => setSelectedProject(null)} />
 
-      <main id="contenido">
-        <Hero />
-        <Services />
-        <Video />
-        <Process />
-        <Portfolio />
-        <Pricing onCotizar={handleCotizar} />
-        <Testimonials />
-        <Team />
-        <FAQ />
-        <Contact />
+      <main id="contenido" style={{ overflowAnchor: 'none' }}>
+        {selectedProject ? (
+          <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
+        ) : (
+          <>
+            <Hero />
+            <Services />
+            <Video />
+            <Process />
+            <Portfolio onSelectProject={setSelectedProject} />
+            <Pricing onCotizar={handleCotizar} />
+            <Testimonials />
+            <Team />
+            <FAQ />
+            <Contact />
+          </>
+        )}
       </main>
 
-      <Footer />
+      <Footer onNavClick={() => setSelectedProject(null)} />
       <WhatsAppFloat />
-      <ScrollAnimations />
+      <ScrollAnimations key={selectedProject ? 'proj' : 'main'} />
 
       {waModal.open && (
         <WhatsAppModal

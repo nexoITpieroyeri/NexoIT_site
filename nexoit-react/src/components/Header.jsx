@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { NAV_LINKS } from '../data/constants';
 
-const Header = () => {
+const Header = ({ onNavClick }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [headerStyle, setHeaderStyle] = useState({});
   const navRef = useRef(null);
@@ -49,12 +49,13 @@ const Header = () => {
 
   const closeNav = () => {
     setIsNavOpen(false);
+    if (onNavClick) onNavClick();
   };
 
   return (
     <header className="header" id="top" style={headerStyle}>
       <div className="container header__inner">
-        <a className="brand" href="#top" aria-label="Ir al inicio">
+        <a className="brand" href="#top" aria-label="Ir al inicio" onClick={() => { if(onNavClick) onNavClick(); }}>
           <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" />
           <div className="brand__text">
             <span className="brand__name">NexoIT</span>

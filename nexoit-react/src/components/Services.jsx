@@ -1,17 +1,21 @@
 import React from 'react';
 import { SERVICES, SERVICE_ICONS } from '../data/constants';
 
+import SpotlightCard from './SpotlightCard';
+
 const ServiceCard = React.memo(({ service, index }) => (
-  <article className={`svc animate-on-scroll animate-delay-${index + 1}`}>
-    <div className="svc__icon">{SERVICE_ICONS[service.icon]}</div>
-    <h3>{service.title}</h3>
-    <p>{service.description}</p>
-    <ul className="ul">
-      {service.features.map((feature, i) => (
-        <li key={i}>{feature}</li>
-      ))}
-    </ul>
-  </article>
+  <SpotlightCard className={`svc animate-on-scroll animate-delay-${index + 1}`}>
+    <article style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="svc__icon">{SERVICE_ICONS[service.icon]}</div>
+      <h3>{service.title}</h3>
+      <p>{service.description}</p>
+      <ul className="ul">
+        {service.features.map((feature, i) => (
+          <li key={i}>{feature}</li>
+        ))}
+      </ul>
+    </article>
+  </SpotlightCard>
 ));
 
 ServiceCard.displayName = 'ServiceCard';

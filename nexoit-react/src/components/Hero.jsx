@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import ShinyText from './ShinyText';
 
 const Hero = () => {
   const typewriterRef = useRef(null);
@@ -46,13 +47,14 @@ const Hero = () => {
     <section className="hero">
       <div className="container hero__grid">
         <div className="hero__copy animate-blur-in">
-          <p className="pill animate-scale-in animate-delay-1">Ingeniería de software • Web • Apps • Automatización</p>
+          <p className="pill animate-scale-in animate-delay-1"><ShinyText text="Ingeniería de software • Web • Apps • Automatización" speed={4} /></p>
           <h1 className="animate-scale-in animate-delay-2">
             Convertimos ideas en{' '}
             <span className="grad gradient-animated">
               <span ref={typewriterRef}></span>
             </span>{' '}
-            listas para crecer.
+            <br />
+            <ShinyText text="listas para crecer." speed={3} />
           </h1>
           <p className="lead animate-scale-in animate-delay-3">
             Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas enfocado en crear soluciones rápidas, seguras y escalables:
@@ -64,30 +66,6 @@ const Hero = () => {
             <a className="btn btn--ghost" href="#servicios">Ver servicios</a>
           </div>
 
-          <div className="hero__stats" role="list" aria-label="Indicadores">
-            <div className="stat animate-on-scroll animate-delay-1" role="listitem">
-              <span className="stat__k">+24h</span>
-              <span className="stat__t">Respuesta promedio</span>
-            </div>
-            <div className="stat animate-on-scroll animate-delay-2" role="listitem">
-              <span className="stat__k">100%</span>
-              <span className="stat__t">Enfoque en calidad</span>
-            </div>
-            <div className="stat animate-on-scroll animate-delay-3" role="listitem">
-              <span className="stat__k">Web + App</span>
-              <span className="stat__t">Proyectos integrados</span>
-            </div>
-          </div>
-
-          <div className="hero__trust animate-scale-in animate-delay-5">
-            <span className="muted">Stack:</span>
-            <span className="chip">HTML/CSS/JS</span>
-            <span className="chip">React</span>
-            <span className="chip">Node</span>
-            <span className="chip">PHP</span>
-            <span className="chip">SQL</span>
-            <span className="chip">Firebase</span>
-          </div>
         </div>
 
         <div className="hero__card animate-slide-right">

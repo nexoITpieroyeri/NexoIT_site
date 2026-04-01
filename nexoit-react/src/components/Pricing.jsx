@@ -1,31 +1,35 @@
 import React, { useState, useCallback } from 'react';
 import { PLANS } from '../data/constants';
 
+import SpotlightCard from './SpotlightCard';
+
 const PlanCard = React.memo(({ plan, onQuote }) => (
-  <div className={`plan-card${plan.featured ? ' featured' : ''}`}>
-    {plan.featured && <div className="badge">Más pedido</div>}
-    <p className="plan-tag">{plan.tag}</p>
-    <h3 className="plan-name">{plan.name}</h3>
-    <p className="plan-desc">{plan.description}</p>
-    <div className="price-row">
-      <span className="price-from">Desde</span>
-      <span className="price-num">{plan.price}</span>
+  <SpotlightCard className={`plan-card${plan.featured ? ' featured' : ''}`}>
+    <div style={{ position: 'relative', zIndex: 10 }}>
+      {plan.featured && <div className="badge">Más pedido</div>}
+      <p className="plan-tag">{plan.tag}</p>
+      <h3 className="plan-name">{plan.name}</h3>
+      <p className="plan-desc">{plan.description}</p>
+      <div className="price-row">
+        <span className="price-from">Desde</span>
+        <span className="price-num">{plan.price}</span>
+      </div>
+      <p className="price-note">{plan.note}</p>
+      <div className="divider"></div>
+      <p className="feat-title">Incluye</p>
+      <ul className="features">
+        {plan.features.map((feature, i) => (
+          <li key={i}>{feature}</li>
+        ))}
+      </ul>
+      <button
+        className={`btn${plan.featured ? ' btn-filled' : ' btn-outline'}`}
+        onClick={() => onQuote(plan.name, plan.price, plan.description)}
+      >
+        Cotizar ahora
+      </button>
     </div>
-    <p className="price-note">{plan.note}</p>
-    <div className="divider"></div>
-    <p className="feat-title">Incluye</p>
-    <ul className="features">
-      {plan.features.map((feature, i) => (
-        <li key={i}>{feature}</li>
-      ))}
-    </ul>
-    <button
-      className={`btn${plan.featured ? ' btn-filled' : ' btn-outline'}`}
-      onClick={() => onQuote(plan.name, plan.price, plan.description)}
-    >
-      Cotizar ahora
-    </button>
-  </div>
+  </SpotlightCard>
 ));
 
 PlanCard.displayName = 'PlanCard';

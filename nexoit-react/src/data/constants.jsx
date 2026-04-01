@@ -5,7 +5,6 @@ export const NAV_LINKS = [
   { href: '#proceso', label: 'Proceso' },
   { href: '#portafolio', label: 'Portafolio' },
   { href: '#testimonios', label: 'Testimonios' },
-  { href: 'casos-exito.html', label: 'Casos de Éxito' },
   { href: '#planes', label: 'Planes' },
   { href: '#faq', label: 'FAQ' },
 ];
@@ -95,9 +94,16 @@ export const PORTFOLIO_PROJECTS = [
     title: 'Plataforma de E-commerce',
     year: 2026,
     description: 'Sistema completo de administración de tienda en línea con roles de usuario, seguimiento de pedidos y dashboard interactivo.',
+    fullDescription: 'Sistema completo de administración de tienda en línea con roles de usuario (administrador, vendedor, cliente), seguimiento de pedidos en tiempo real, reportes automatizados y dashboard interactivo con indicadores clave de rendimiento.',
+    features: ['Gestión de inventario y productos', 'Control de pedidos y estados de entrega', 'Panel de reportes con gráficas', 'Módulo de usuarios y permisos', 'Notificaciones automáticas'],
     tags: ['E-commerce', 'Dashboard', 'PHP + MySQL'],
     category: 'ecommerce',
     image: '/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce1.webp',
+    gallery: [
+      '/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce1.webp',
+      '/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce2.webp',
+      '/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce3.webp'
+    ],
     link: 'proyectos/Sistema de Gestión.html',
     badge: 'Destacado'
   },
@@ -105,9 +111,16 @@ export const PORTFOLIO_PROJECTS = [
     title: 'Landing Page Restaurante',
     year: 2025,
     description: 'Landing page moderna para restaurante de alta gama con diseño responsive y optimización de rendimiento.',
+    fullDescription: 'Desarrollo de una landing page moderna para un restaurante de alta gama, enfocada en la conversión, mostrando el menú interactivo, reserva de mesas online y galería de alta calidad con optimización avanzada de rendimiento para Web Vitals.',
+    features: ['Diseño responsive premium', 'Optimización de SEO y velocidad', 'Sistema de reservas integrado', 'Menú interactivo y dinámico'],
     tags: ['React', 'Next.js', 'Tailwind CSS'],
     category: 'web',
     image: '/assets/img/projects/fotosLandingPageRestaurante/fotosLandingPageRestaurante1.webp',
+    gallery: [
+      '/assets/img/projects/fotosLandingPageRestaurante/fotosLandingPageRestaurante1.webp',
+      '/assets/img/projects/fotosLandingPageRestaurante/fotosLandingPageRestaurante2.webp',
+      '/assets/img/projects/fotosLandingPageRestaurante/fotosLandingPageRestaurante3.webp'
+    ],
     link: 'proyectos/cola-atencion.html',
     badge: 'Popular'
   },
@@ -115,9 +128,16 @@ export const PORTFOLIO_PROJECTS = [
     title: 'Sistema de Préstamo con Bot',
     year: 2025,
     description: 'Sistema SaaS de gestión de préstamos con panel administrativo y bot automatizado para atención al cliente.',
+    fullDescription: 'Plataforma SaaS diseñada para agencias de préstamos, integrando un bot conversacional por WhatsApp para calificar prospectos automáticamente y un panel administrativo completo para controlar desembolsos, cuotas y mora.',
+    features: ['Bot de WhatsApp automatizado', 'Dashboard financiero', 'Asignación automática de analistas', 'Módulo de alertas de cobro'],
     tags: ['SaaS', 'React', 'Node.js'],
     category: 'sistema',
     image: '/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot1.webp',
+    gallery: [
+      '/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot1.webp',
+      '/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot2.webp',
+      '/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot3.webp'
+    ],
     link: 'proyectos/agencia-viajes.html',
     badge: null
   },
@@ -125,9 +145,16 @@ export const PORTFOLIO_PROJECTS = [
     title: 'Página Web Empresarial para Clínica',
     year: 2024,
     description: 'Sitio web corporativo para clínica en Piura con agendamiento de citas online, especialidades médicas y diseño moderno.',
+    fullDescription: 'Sitio web corporativo e institucional para una importante clínica en Piura. Incluye un sistema de agendamiento de citas online, catálogo detallado de especialidades médicas, blog de salud y diseño limpio que inspira confianza.',
+    features: ['Agendamiento de citas en línea', 'Catálogo de especialidades', 'Integración con CRM médico', 'Blog de noticias'],
     tags: ['Web Empresarial', 'HTML/CSS/JS', 'PHP'],
     category: 'web',
     image: '/assets/img/projects/fotosPáginaWebEmpresarialparaClínica/fotosPáginaWebEmpresarialparaClínica1.webp',
+    gallery: [
+      '/assets/img/projects/fotosPáginaWebEmpresarialparaClínica/fotosPáginaWebEmpresarialparaClínica1.webp',
+      '/assets/img/projects/fotosPáginaWebEmpresarialparaClínica/fotosPáginaWebEmpresarialparaClínica2.webp',
+      '/assets/img/projects/fotosPáginaWebEmpresarialparaClínica/fotosPáginaWebEmpresarialparaClínica3.webp'
+    ],
     link: 'proyectos/tienda-online.html',
     badge: null
   },
@@ -135,9 +162,16 @@ export const PORTFOLIO_PROJECTS = [
     title: 'App Web Lavandería',
     year: 2024,
     description: 'Aplicación web para lavandería en Piura con gestión de pedidos, seguimiento en tiempo real y catálogo de servicios.',
+    fullDescription: 'Aplicación PWA escalable para una cadena de lavanderías. Permite a los usuarios solicitar recogidas, realizar seguimiento del estado de sus prendas en tiempo real, visualizar el catálogo de servicios y procesar pagos integrados.',
+    features: ['Seguimiento GPS de conductores', 'Estados del pedido en tiempo real', 'Catálogo interactivo', 'Pasarela de pagos en línea'],
     tags: ['Aplicación Web', 'Frontend', 'Backend'],
     category: 'app',
     image: '/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería1.webp',
+    gallery: [
+      '/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería1.webp',
+      '/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería2.webp',
+      '/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería3.webp'
+    ],
     link: 'proyectos/lavanderia.html',
     badge: null
   }

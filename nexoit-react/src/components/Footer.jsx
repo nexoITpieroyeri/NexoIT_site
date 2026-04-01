@@ -1,7 +1,7 @@
 import React from 'react';
 import { COMPANY_WHATSAPP, COMPANY_EMAIL } from '../data/constants';
 
-const Footer = () => {
+const Footer = ({ onNavClick }) => {
   const year = new Date().getFullYear();
 
   return (
@@ -20,25 +20,24 @@ const Footer = () => {
 
         <div className="footer__col">
           <h4>Secciones</h4>
-          <a href="#servicios">Servicios</a>
-          <a href="#proceso">Proceso</a>
-          <a href="#portafolio">Portafolio</a>
-          <a href="#testimonios">Testimonios</a>
-          <a href="casos-exito.html">Casos de Éxito</a>
-          <a href="#planes">Planes</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contacto">Contacto</a>
+          <a href="#servicios" onClick={() => { if(onNavClick) onNavClick(); }}>Servicios</a>
+          <a href="#proceso" onClick={() => { if(onNavClick) onNavClick(); }}>Proceso</a>
+          <a href="#portafolio" onClick={() => { if(onNavClick) onNavClick(); }}>Portafolio</a>
+          <a href="#testimonios" onClick={() => { if(onNavClick) onNavClick(); }}>Testimonios</a>
+          <a href="#planes" onClick={() => { if(onNavClick) onNavClick(); }}>Planes</a>
+          <a href="#faq" onClick={() => { if(onNavClick) onNavClick(); }}>FAQ</a>
+          <a href="#contacto" onClick={() => { if(onNavClick) onNavClick(); }}>Contacto</a>
         </div>
 
         <div className="footer__col">
           <h4>Legal</h4>
-          <a href="terminos.html">Términos y condiciones</a>
-          <a href="privacidad.html">Política de privacidad</a>
+          <a href="#terminos" onClick={(e) => e.preventDefault()}>Términos y condiciones</a>
+          <a href="#privacidad" onClick={(e) => e.preventDefault()}>Política de privacidad</a>
         </div>
 
         <div className="footer__col">
           <h4>Contacto</h4>
-          <a href="#contacto">Cotizar</a>
+          <a href="#contacto" onClick={() => { if(onNavClick) onNavClick(); }}>Cotizar</a>
           <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>
           <a href={`https://wa.me/${COMPANY_WHATSAPP}`} target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
