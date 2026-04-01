@@ -171,13 +171,14 @@
 
 *{box-sizing:border-box; margin:0; padding:0}
 html,body{height:100%;scroll-behavior:smooth; overflow-x:hidden}
+body{overflow-x:hidden; overflow-y:auto}
 img{max-width:100%; height:auto}
 
 /* Page Loader Mejorado */
 .page-loader {
   position: fixed;
   inset: 0;
-  background: var(--bg);
+  background: linear-gradient(135deg, #000000 0%, #0a0010 50%, #000000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
