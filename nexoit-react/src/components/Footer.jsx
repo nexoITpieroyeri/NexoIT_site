@@ -27,12 +27,13 @@ const Footer = ({ onNavClick }) => {
           <a href="#planes" onClick={() => { if(onNavClick) onNavClick(); }}>Planes</a>
           <a href="#faq" onClick={() => { if(onNavClick) onNavClick(); }}>FAQ</a>
           <a href="#contacto" onClick={() => { if(onNavClick) onNavClick(); }}>Contacto</a>
+          <a href="/casos-exito.html">Casos de Éxito</a>
         </div>
 
         <div className="footer__col">
           <h4>Legal</h4>
-          <a href="#terminos" onClick={(e) => e.preventDefault()}>Términos y condiciones</a>
-          <a href="#privacidad" onClick={(e) => e.preventDefault()}>Política de privacidad</a>
+          <a href="/terminos.html">Términos y condiciones</a>
+          <a href="/privacidad.html">Política de privacidad</a>
         </div>
 
         <div className="footer__col">

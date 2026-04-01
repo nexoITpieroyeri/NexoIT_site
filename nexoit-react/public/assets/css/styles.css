@@ -281,31 +281,7 @@ body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:var(--text);
-  --c-0: hsla(224, 89%, 10%, 1);
-  --x-0: 7%;
-  --y-0: 30%;
-  --c-1: hsla(238, 94%, 14%, 1);
-  --x-1: 72%;
-  --y-1: 37%;
-  --c-2: hsla(249, 89%, 8%, 1);
-  --x-2: 52%;
-  --y-2: 52%;
-  --c-3: hsla(253, 98%, 2%, 1);
-  --x-3: 81%;
-  --y-3: 20%;
-  --c-4: hsla(211, 89%, 6%, 1);
-  --x-4: 58%;
-  --y-4: 26%;
-  background-color: #070b12;
-  background-image: 
-    radial-gradient(circle at var(--x-0) var(--y-0), var(--c-0) var(--s-start-0), transparent var(--s-end-0)),
-    radial-gradient(circle at var(--x-1) var(--y-1), var(--c-1) var(--s-start-1), transparent var(--s-end-1)),
-    radial-gradient(circle at var(--x-2) var(--y-2), var(--c-2) var(--s-start-2), transparent var(--s-end-2)),
-    radial-gradient(circle at var(--x-3) var(--y-3), var(--c-3) var(--s-start-3), transparent var(--s-end-3)),
-    radial-gradient(circle at var(--x-4) var(--y-4), var(--c-4) var(--s-start-4), transparent var(--s-end-4));
-  animation: hero-gradient-animation 15s ease-in-out infinite;
-  background-blend-mode: normal, normal, normal, normal, normal;
-  background-attachment: fixed;
+  background-color: #060010;
   min-height: 100vh;
   overflow-x:hidden;
   position: relative;
@@ -332,7 +308,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -2620,7 +2596,6 @@ input:hover, select:hover, textarea:hover {
 
 /* Brand logo hover */
 .brand__logo {
-.brand__logo {
   transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 .brand:hover .brand__logo {
@@ -2641,6 +2616,8 @@ input:hover, select:hover, textarea:hover {
 
 /* Testimonial nav enhanced */
 .testimonial-nav {
+  opacity: 1;
+}
 
 /* Avatar text bounce on hover */
 .person:hover .avatar span {

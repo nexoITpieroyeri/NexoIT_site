@@ -34,7 +34,28 @@ function App() {
     <>
       <Preloader />
       <FuzzyOverlay />
-      <PixelSnow color="#0080ff" variant="snowflake" count={80} />
+      <PixelSnow
+        color="#ffffff"
+        variant="round"
+        flakeSize={0.01}
+        minFlakeSize={1.25}
+        pixelResolution={200}
+        speed={1.25}
+        density={0.3}
+        direction={125}
+        brightness={1}
+        depthFade={8}
+        farPlane={20}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
       <a className="skip" href="#contenido">Saltar al contenido</a>
 

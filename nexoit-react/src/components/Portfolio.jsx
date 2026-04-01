@@ -6,6 +6,7 @@ const FILTER_OPTIONS = [
   { value: 'ecommerce', label: 'E-commerce' },
   { value: 'web', label: 'Sitios Web' },
   { value: 'sistema', label: 'Sistemas' },
+  { value: 'app', label: 'Aplicaciones' },
 ];
 
 import SpotlightCard from './SpotlightCard';
