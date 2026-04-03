@@ -27,7 +27,7 @@ const Preloader = () => {
     <div className={`page-loader${isVisible ? ' active' : ''}`} id="pageLoader">
       <div className="loader__content">
         <div className="loader__logo">
-          <img src="/assets/img/logo.jpg" alt="NexoIT Logo" width="80" height="80" />
+          <img src="/assets/img/logo.jpg" alt="NexoIT Logo" width="80" height="80" loading="eager" />
         </div>
         <div className="loader">
           <div className="loader__ring"></div>

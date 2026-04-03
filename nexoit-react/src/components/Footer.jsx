@@ -9,7 +9,7 @@ const Footer = ({ onNavClick }) => {
       <div className="container footer__grid">
         <div>
           <div className="brand brand--footer">
-            <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" />
+            <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" loading="eager" />
             <div className="brand__text">
               <span className="brand__name">NexoIT</span>
               <span className="brand__tag">Soluciones que conectan</span>

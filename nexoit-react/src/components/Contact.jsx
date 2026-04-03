@@ -83,14 +83,14 @@ const Contact = () => {
               <h3 className="gradient-animated">Redes sociales</h3>
               <p className="muted">Síguenos para ver avances y contenido.</p>
               <div className="social">
-                <a className="social__btn icon-rotate" href={SOCIAL.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/img/icons/facebook.svg" alt="Facebook NexoIT" />
+                <a className="social__btn" href={SOCIAL.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/img/icons/facebook.svg" alt="Facebook NexoIT" loading="eager" />
                 </a>
-                <a className="social__btn icon-rotate" href={SOCIAL.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/img/icons/linkedin.svg" alt="LinkedIn NexoIT" />
+                <a className="social__btn" href={SOCIAL.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/img/icons/linkedin.svg" alt="LinkedIn NexoIT" loading="eager" />
                 </a>
-                <a className="social__btn icon-rotate" href={SOCIAL.tiktok} aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/img/icons/tiktok.svg" alt="TikTok NexoIT" />
+                <a className="social__btn" href={SOCIAL.tiktok} aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/img/icons/tiktok.svg" alt="TikTok NexoIT" loading="eager" />
                 </a>
               </div>
             </div>

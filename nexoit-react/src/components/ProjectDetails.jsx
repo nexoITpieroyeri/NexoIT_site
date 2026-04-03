@@ -94,6 +94,8 @@ const ProjectDetails = ({ project, onClose }) => {
         <img 
           src={project.image} 
           alt={project.title} 
+          loading="eager"
+          decoding="async"
           style={{ width: '100%', maxHeight: '600px', borderRadius: '16px', objectFit: 'cover', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer' }} 
           onClick={() => setLightboxImg(project.image)}
         />
@@ -138,6 +140,8 @@ const ProjectDetails = ({ project, onClose }) => {
                   <img 
                     src={imgSrc} 
                     alt={`Pantalla ${i + 1} del proyecto`} 
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', height: '220px', objectFit: 'cover', cursor: 'pointer', transition: 'transform 0.4s' }}
                     onClick={() => setLightboxImg(imgSrc)}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
@@ -188,6 +192,8 @@ const ProjectDetails = ({ project, onClose }) => {
           <img 
             src={lightboxImg} 
             alt="Vista ampliada" 
+            loading="eager"
+            decoding="async"
             style={{ 
               maxWidth: '90vw', 
               maxHeight: '90vh', 

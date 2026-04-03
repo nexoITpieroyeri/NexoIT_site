@@ -49,7 +49,7 @@ const Testimonials = () => {
                 className={`testimonial-nav${activeIndex === i ? ' active' : ''}`}
                 onClick={() => goToSlide(i)}
               >
-                <img src={t.navImage} alt={t.author} />
+                <img src={t.navImage} alt={t.author} loading="lazy" decoding="async" />
                 <span className="testimonial-nav__company">{t.project}</span>
               </button>
             ))}
@@ -66,7 +66,7 @@ const Testimonials = () => {
                 <p className="testimonial-slide__text">{t.text}</p>
                 <div className="testimonial-slide__highlight">{t.highlight}</div>
                 <div className="testimonial-slide__author">
-                  <img src={t.image} alt={t.author} />
+                  <img src={t.image} alt={t.author} loading="lazy" />
                   <div>
                     <strong>{t.author}</strong>
                     <span>{t.company}</span>

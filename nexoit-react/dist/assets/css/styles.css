@@ -2497,7 +2497,7 @@ input:hover, select:hover, textarea:hover {
   left: 100%;
 }
 
-/* Social buttons: bounce + rotate icon */
+/* Social buttons */
 .social__btn {
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
@@ -2505,12 +2505,6 @@ input:hover, select:hover, textarea:hover {
   background: rgba(46,245,154,.1);
   border-color: rgba(46,245,154,.2);
   box-shadow: 0 4px 16px rgba(46,245,154,.15);
-}
-.social__btn img {
-  transition: transform 0.6s ease;
-}
-.social__btn:hover img {
-  transform: rotate(360deg);
 }
 
 /* Video section hover */

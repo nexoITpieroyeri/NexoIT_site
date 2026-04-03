@@ -56,7 +56,7 @@ const Header = ({ onNavClick }) => {
     <header className="header" id="top" style={headerStyle}>
       <div className="container header__inner">
         <a className="brand" href="#top" aria-label="Ir al inicio" onClick={() => { if(onNavClick) onNavClick(); }}>
-          <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" />
+          <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" loading="eager" />
           <div className="brand__text">
             <span className="brand__name">NexoIT</span>
             <span className="brand__tag">Soluciones que conectan</span>

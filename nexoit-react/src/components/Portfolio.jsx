@@ -15,7 +15,7 @@ const ProjectCard = React.memo(({ project, onSelect }) => (
   <SpotlightCard className="pcard animate-on-scroll">
     <article data-category={project.category} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <a className="pcard__media" href="#!" onClick={(e) => { e.preventDefault(); onSelect(project); }} aria-label={`Ver descripción: ${project.title}`}>
-        <img src={project.image} alt={`Proyecto: ${project.title}`} loading="lazy" />
+        <img src={project.image} alt={`Proyecto: ${project.title}`} loading="lazy" decoding="async" />
         {project.badge && <div className="pcard__badge">{project.badge}</div>}
       </a>
       <div className="pcard__body">
