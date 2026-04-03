@@ -21,8 +21,9 @@
   background: rgba(46, 245, 154, 0.5);
 }
 
-#root {
-  min-height: 100vh;
+html, body, #root {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 /* --- React Bits Component Styles --- */
@@ -93,6 +94,7 @@
   pointer-events: none;
   z-index: 9999;
   animation: noise 8s steps(10) infinite;
+  overflow: hidden;
 }
 
 @keyframes noise {

@@ -211,13 +211,12 @@ export default function PixelSnow({
       clearTimeout(resizeTimeoutRef.current);
     }
     resizeTimeoutRef.current = window.setTimeout(() => {
-      const container = containerRef.current;
       const renderer = rendererRef.current;
       const material = materialRef.current;
-      if (!container || !renderer || !material) return;
+      if (!renderer || !material) return;
 
-      const w = container.offsetWidth;
-      const h = container.offsetHeight;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
       renderer.setSize(w, h);
       material.uniforms.uResolution.value.set(w, h);
     }, 100);
@@ -244,6 +243,9 @@ export default function PixelSnow({
     const container = containerRef.current;
     if (!container) return;
 
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
     const scene = new Scene();
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new WebGLRenderer({
@@ -256,7 +258,7 @@ export default function PixelSnow({
     });
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(container.offsetWidth, container.offsetHeight);
+    renderer.setSize(w, h);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
@@ -266,7 +268,7 @@ export default function PixelSnow({
       fragmentShader,
       uniforms: {
         uTime: { value: 0 },
-        uResolution: { value: new Vector2(container.offsetWidth, container.offsetHeight) },
+        uResolution: { value: new Vector2(w, h) },
         uFlakeSize: { value: flakeSize },
         uMinFlakeSize: { value: minFlakeSize },
         uPixelResolution: { value: pixelResolution },

@@ -45,15 +45,6 @@ function App() {
         density={0.3}
         variant="snowflake"
         direction={125}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-          zIndex: 0,
-        }}
       />
 
       <a className="skip" href="#contenido">Saltar al contenido</a>
