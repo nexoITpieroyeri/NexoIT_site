@@ -61,6 +61,21 @@ const Hero = () => {
             páginas web, aplicaciones móviles, sistemas internos, software a medida y apoyo en proyectos.
           </p>
 
+          <div className="hero__stats animate-scale-in animate-delay-3">
+            <div className="stat">
+              <span className="stat__number">3+</span>
+              <span className="stat__label">Años de experiencia</span>
+            </div>
+            <div className="stat">
+              <span className="stat__number">100%</span>
+              <span className="stat__label">Confiable</span>
+            </div>
+            <div className="stat">
+              <span className="stat__number">12+</span>
+              <span className="stat__label">Clientes satisfechos</span>
+            </div>
+          </div>
+
           <div className="hero__cta animate-scale-in animate-delay-4">
             <a className="btn" href="#contacto">Quiero una cotización</a>
             <a className="btn btn--ghost" href="#servicios">Ver servicios</a>
