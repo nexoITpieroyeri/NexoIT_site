@@ -16,6 +16,7 @@ import WhatsAppFloat, { WhatsAppModal } from './components/WhatsAppFloat';
 import ScrollAnimations from './components/ScrollAnimations';
 import PixelSnow from './components/PixelSnow';
 import ProjectDetails from './components/ProjectDetails';
+import TechLogos from './components/TechLogos';
 
 function App() {
   const [waModal, setWaModal] = useState({ open: false, plan: '', price: '', desc: '' });
@@ -33,16 +34,16 @@ function App() {
     <>
       <Preloader />
       <PixelSnow
-        color="#0000ff"
+        color="#2ef59a"
         flakeSize={0.01}
         minFlakeSize={1.25}
         pixelResolution={200}
         speed={1.25}
         depthFade={8}
         farPlane={20}
-        brightness={1}
+        brightness={0.8}
         gamma={0.4545}
-        density={0.3}
+        density={0.25}
         variant="snowflake"
         direction={125}
       />
@@ -58,6 +59,7 @@ function App() {
           <>
             <Hero />
             <Services />
+            <TechLogos />
             <Video />
             <Process />
             <Portfolio onSelectProject={setSelectedProject} />

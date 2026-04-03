@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ShinyText from './ShinyText';
+import AnimatedCounter from './AnimatedCounter';
 
 const Hero = () => {
   const typewriterRef = useRef(null);
@@ -62,16 +63,16 @@ const Hero = () => {
           </p>
 
           <div className="hero__stats animate-scale-in animate-delay-3">
-            <div className="stat">
-              <span className="stat__number">3+</span>
+            <div className="stat animate-on-scroll">
+              <span className="stat__number"><AnimatedCounter end={3} suffix="+" duration={1500} /></span>
               <span className="stat__label">Años de experiencia</span>
             </div>
-            <div className="stat">
-              <span className="stat__number">100%</span>
+            <div className="stat animate-on-scroll">
+              <span className="stat__number"><AnimatedCounter end={100} suffix="%" duration={1500} /></span>
               <span className="stat__label">Confiable</span>
             </div>
-            <div className="stat">
-              <span className="stat__number">12+</span>
+            <div className="stat animate-on-scroll">
+              <span className="stat__number"><AnimatedCounter end={12} suffix="+" duration={1500} /></span>
               <span className="stat__label">Clientes satisfechos</span>
             </div>
           </div>
