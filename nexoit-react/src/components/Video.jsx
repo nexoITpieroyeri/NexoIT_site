@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Video = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section section--alt" id="video">
       <div className="container">
@@ -10,10 +32,20 @@ const Video = () => {
         </div>
 
         <div className="video">
-          <video className="video__player" controls playsInline preload="metadata" poster="/assets/img/logo.jpg">
-            <source src="/assets/video/promo.mp4" type="video/mp4" />
-            Tu navegador no soporta video HTML5.
-          </video>
+          <div className="video__player-wrapper">
+            <video 
+              ref={videoRef}
+              className="video__player" 
+              controls 
+              playsInline 
+              preload="metadata" 
+              poster="/assets/img/logo.jpg"
+              volume={0.6}
+            >
+              <source src="/assets/video/promo.mp4" type="video/mp4" />
+              Tu navegador no soporta video HTML5.
+            </video>
+          </div>
 
           <div className="video__side">
             <h3>¿Qué incluye una entrega NexoIT?</h3>

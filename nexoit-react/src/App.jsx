@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import Preloader from './components/Preloader';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -21,6 +21,21 @@ import TechLogos from './components/TechLogos';
 function App() {
   const [waModal, setWaModal] = useState({ open: false, plan: '', price: '', desc: '' });
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const scrollRestored = useRef(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded && !scrollRestored.current) {
+      scrollRestored.current = true;
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
+    }
+  }, [isLoaded]);
 
   const handleCotizar = useCallback((plan, price, desc) => {
     setWaModal({ open: true, plan, price, desc });
@@ -30,9 +45,14 @@ function App() {
     setWaModal({ open: false, plan: '', price: '', desc: '' });
   }, []);
 
+  const handlePreloaderDone = useCallback(() => {
+    setIsLoaded(true);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <>
-      <Preloader />
+      <Preloader onDone={handlePreloaderDone} />
       <PixelSnow
         color="#2ef59a"
         flakeSize={0.01}

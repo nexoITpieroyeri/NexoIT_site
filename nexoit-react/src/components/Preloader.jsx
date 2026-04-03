@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const Preloader = () => {
+const Preloader = ({ onDone }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const hideLoader = () => {
       setIsVisible(false);
       document.body.classList.add('loaded');
+      if (onDone) {
+        setTimeout(onDone, 50);
+      }
     };
 
     if (document.readyState === 'complete') {
@@ -19,7 +22,7 @@ const Preloader = () => {
         clearTimeout(timeout);
       };
     }
-  }, []);
+  }, [onDone]);
 
   if (!isVisible) return null;
 
