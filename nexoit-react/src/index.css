@@ -179,10 +179,6 @@ html, body, #root {
   animation: scroll-logos 40s linear infinite;
 }
 
-.tech-carousel__track:hover {
-  animation-play-state: running;
-}
-
 .tech-carousel__item {
   flex-shrink: 0;
   width: 100px;
