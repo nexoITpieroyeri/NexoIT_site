@@ -92,7 +92,7 @@ const Hero = () => {
             </div>
 
             <div className="preview">
-              <img src="/assets/img/logo.jpg" alt="NexoIT" className="preview__img" loading="eager" />
+              <img src="/assets/img/logo.jpg" alt="NexoIT" className="preview__img" loading="eager" fetchpriority="high" decoding="async" />
               <div className="preview__overlay">
                 <p className="preview__title">NexoIT</p>
                 <p className="preview__sub">Soluciones que conectan</p>

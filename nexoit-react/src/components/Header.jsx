@@ -7,6 +7,8 @@ const Header = ({ onNavClick }) => {
   const navRef = useRef(null);
   const navBtnRef = useRef(null);
 
+  const [activeSection, setActiveSection] = useState('');
+
   const handleScroll = useCallback(() => {
     if (window.scrollY > 50) {
       setHeaderStyle({
@@ -26,6 +28,30 @@ const Header = ({ onNavClick }) => {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
+
+  // Scroll Spy Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: '-50% 0px -50% 0px' }
+    );
+
+    NAV_LINKS.forEach((link) => {
+      const id = link.href.substring(1);
+      if (id) {
+        const element = document.getElementById(id);
+        if (element) observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -81,7 +107,14 @@ const Header = ({ onNavClick }) => {
           onClick={(e) => e.stopPropagation()}
         >
           {NAV_LINKS.map(link => (
-            <a key={link.href} href={link.href} onClick={closeNav}>{link.label}</a>
+            <a 
+              key={link.href} 
+              href={link.href} 
+              className={activeSection === link.href ? 'active' : ''}
+              onClick={closeNav}
+            >
+              {link.label}
+            </a>
           ))}
           <a href="#contacto" className="btn btn--sm" onClick={closeNav}>Cotizar</a>
         </nav>
