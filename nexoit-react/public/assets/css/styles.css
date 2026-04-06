@@ -2869,3 +2869,40 @@ input:focus, select:focus, textarea:focus {
   .plan-name { font-size: 16px; }
   .price-num { font-size: 26px; }
 }
+
+/* Magic UI - Border Beam */
+.border-beam-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: calc(var(--border-width) * 1px);
+  pointer-events: none;
+  z-index: 10;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  overflow: hidden;
+}
+
+.border-beam-spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  width: calc(var(--size) * 1px);
+  transform: translate(-50%, -50%) rotate(0deg);
+  background: conic-gradient(
+    from calc(var(--anchor) * 1deg),
+    transparent,
+    var(--color-from),
+    var(--color-to),
+    transparent 15%
+  );
+  animation: border-beam-anim calc(var(--duration) * 1s) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes border-beam-anim {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

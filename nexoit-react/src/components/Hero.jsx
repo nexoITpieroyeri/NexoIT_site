@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import ShinyText from './ShinyText';
 import AnimatedCounter from './AnimatedCounter';
+import BorderBeam from './BorderBeam';
 
 const Hero = () => {
   const typewriterRef = useRef(null);
@@ -85,7 +86,8 @@ const Hero = () => {
         </div>
 
         <div className="hero__card animate-slide-right">
-          <div className="card">
+          <div className="card" style={{ position: 'relative' }}>
+            <BorderBeam size={400} duration={8} colorFrom="#2ef59a" colorTo="#43c8ff" />
             <div className="card__top">
               <div className="pulse"></div>
               <span className="muted">Disponible para nuevos proyectos</span>
