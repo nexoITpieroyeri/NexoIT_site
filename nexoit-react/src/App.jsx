@@ -72,7 +72,7 @@ function App() {
 
       <Header onNavClick={() => setSelectedProject(null)} />
 
-      <main id="contenido" style={{ overflowAnchor: 'none' }}>
+      <main id="contenido" style={{ overflowAnchor: 'none', paddingTop: '70px' }}>
         {selectedProject ? (
           <ProjectDetails project={selectedProject} onClose={() => setSelectedProject(null)} />
         ) : (
