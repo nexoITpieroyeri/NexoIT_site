@@ -14,7 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppFloat, { WhatsAppModal } from './components/WhatsAppFloat';
 import ScrollAnimations from './components/ScrollAnimations';
-import PixelSnow from './components/PixelSnow';
+
 import ProjectDetails from './components/ProjectDetails';
 import TechLogos from './components/TechLogos';
 
@@ -53,20 +53,6 @@ function App() {
   return (
     <>
       <Preloader onDone={handlePreloaderDone} />
-      <PixelSnow
-        color="#2ef59a"
-        flakeSize={0.01}
-        minFlakeSize={1.25}
-        pixelResolution={200}
-        speed={1.25}
-        depthFade={8}
-        farPlane={20}
-        brightness={0.8}
-        gamma={0.4545}
-        density={0.25}
-        variant="snowflake"
-        direction={125}
-      />
 
       <a className="skip" href="#contenido">Saltar al contenido</a>
 
