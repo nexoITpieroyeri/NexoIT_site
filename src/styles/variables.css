@@ -1,0 +1,16 @@
+/* Paleta global para tarjetas de Portafolio */
+:root {
+  --card-bg: #ffffff;
+  --card-border: #e1e5f0;
+  --card-text: #1b1e23;
+  --card-accent: #4f46e5; /* acento para borde/stripe */
+  --card-hover-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #0f1220;
+    --card-border: #2a3244;
+    --card-text: #e9eefc;
+    --card-accent: #93c5fd;
+  }
+}

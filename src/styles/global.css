@@ -1,0 +1,83 @@
+/* Global remodel: clean typography, responsive layout, dark mode toggle */
+:root {
+  --bg: #f7f8fc;
+  --fg: #0f1220;
+  --card-bg: var(--card-bg, #f6f7fb);
+  --card-border: var(--card-border, #e1e5f0);
+  --card-text: var(--card-text, #1b1e23);
+  --card-accent: var(--card-accent, #4f46e5);
+  --link: #4f46e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1020;
+    --fg: #e5e7eb;
+  }
+}
+
+/* Global reset and theme variables */
+:root {
+  --bg: #f7f8fc;
+  --fg: #0f1220;
+  --card-bg: #f6f7fb;
+  --card-border: #e1e5f0;
+  --card-text: #1b1e23;
+  --card-accent: #4f46e5;
+  --link: #4f46e5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1020;
+    --fg: #e5e7eb;
+    --card-bg: #1a1f2a;
+    --card-border: #2a3244;
+    --card-text: #e9eefc;
+    --card-accent: #93c5fd;
+  }
+}
+
+html, body {
+  margin: 0; padding: 0; min-height: 100%; background: var(--bg); color: var(--fg);
+  font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
+}
+
+header, footer { padding: 1rem 1.5rem; }
+header { border-bottom: 1px solid var(--card-border); position: sticky; top: 0; background: color-mix(in srgb, var(--bg) 90%, white); z-index: 10; }
+.brand { font-weight: 700; letter-spacing: .2px; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 1rem; }
+.hero { padding: 2rem 0; text-align: center; }
+.hero h1 { margin: 0 0 .5rem; font-size: 2rem; }
+.hero p { margin: 0; color: #555; }
+
+.portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; padding: 1rem 0 2rem; }
+.portfolio-card { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--card-text); position: relative; border-radius: 12px; padding: 16px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.portfolio-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--card-accent); border-radius: 6px 0 0 6px; }
+.portfolio-card h3 { margin: 0 0 .5rem; font-size: 1.25rem; }
+.portfolio-card p { margin: 0; color: color-mix(in srgb, var(--card-text) 88%, black); }
+.portfolio-card .meta { font-size: .85rem; color: #666; }
+
+main { padding: 1rem 0; }
+section { padding: 0; }
+
+/* Footer links */
+footer a { color: var(--link); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Theme override via data-theme attribute for runtime toggle */
+html[data-theme="dark"] {
+  --bg: #0b1020;
+  --fg: #e5e7eb;
+}
+
+/* Ensure cards with explicit data-color are visible over the base card bg */
+.portfolio-card[data-color="azul"] { --card-bg: #e6f0ff; --card-border: #b7d0ff; --card-text: #0a2a68; --card-accent: #3b82f6; }
+.portfolio-card[data-color="verde"] { --card-bg: #eafff0; --card-border: #b9e6c9; --card-text: #084e1f; --card-accent: #22c55e; }
+.portfolio-card[data-color="ambar"] { --card-bg: #fff8e6; --card-border: #ffe0a8; --card-text: #5b3a00; --card-accent: #f59e0b; }
+
+/* Dark mode adjustments for colored cards to keep contrast */
+@media (prefers-color-scheme: dark) {
+  .portfolio-card[data-color="azul"] { --card-bg: #142540; --card-border: #2a4a78; --card-text: #cfe1ff; }
+  .portfolio-card[data-color="verde"] { --card-bg: #0f2a12; --card-border: #2a7a30; --card-text: #baffd6; }
+  .portfolio-card[data-color="ambar"] { --card-bg: #2a1a00; --card-border: #7a4f00; --card-text: #ffe5b3; }
+}
+}
