@@ -51,18 +51,8 @@ function App() {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', width: '100%', position: 'relative' }}>
-      {/* Azure Depths */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0, right: 0, bottom: 0, left: 0,
-          zIndex: -1,
-          background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%)",
-        }}
-      />
-      <div style={{ position: 'relative', zIndex: 10 }}>
-        <Preloader onDone={handlePreloaderDone} />
+    <>
+      <Preloader onDone={handlePreloaderDone} />
 
       <a className="skip" href="#contenido">Saltar al contenido</a>
 
@@ -100,8 +90,7 @@ function App() {
           onClose={closeWaModal}
         />
       )}
-      </div>
-    </div>
+    </>
   );
 }
 

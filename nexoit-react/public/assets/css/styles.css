@@ -196,7 +196,7 @@ img{max-width:100%; height:auto}
 .page-loader {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #000000 0%, #0a0010 50%, #000000 100%);
+  background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,7 +300,8 @@ body{
   margin:0;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:var(--text);
-  background: linear-gradient(135deg, #000000 0%, #0a0010 50%, #000000 100%);
+  background: radial-gradient(125% 125% at 50% 100%, #000000 40%, #010133 100%);
+  background-attachment: fixed;
   min-height: 100vh;
   overflow-x:hidden;
   position: relative;
@@ -1011,8 +1012,6 @@ a{color:inherit; text-decoration:none}
 .section{padding:64px 0}
 .section--alt{
   background: rgba(255,255,255,.02);
-  border-top:1px solid rgba(255,255,255,.05);
-  border-bottom:1px solid rgba(255,255,255,.05);
 }
 .section__head{margin-bottom:18px}
 .section__head h2{margin:0 0 10px; font-size:30px; letter-spacing:-.3px}

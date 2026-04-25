@@ -123,8 +123,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      <div className="fade"></div>
     </section>
   );
 };
