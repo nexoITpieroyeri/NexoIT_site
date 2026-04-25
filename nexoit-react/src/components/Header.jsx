@@ -12,12 +12,12 @@ const Header = ({ onNavClick }) => {
   const handleScroll = useCallback(() => {
     if (window.scrollY > 50) {
       setHeaderStyle({
-        background: 'rgba(7,11,18,.85)',
-        boxShadow: '0 4px 30px rgba(0,0,0,.3)'
+        background: 'linear-gradient(135deg, rgba(2,3,12,.92), rgba(4,6,20,.9))',
+        boxShadow: '0 4px 30px rgba(0,0,0,.4), 0 1px 0 rgba(46,245,154,.06)'
       });
     } else {
       setHeaderStyle({
-        background: 'rgba(7,11,18,.7)',
+        background: 'linear-gradient(135deg, rgba(4,6,20,.85), rgba(8,10,28,.82))',
         boxShadow: 'none'
       });
     }
