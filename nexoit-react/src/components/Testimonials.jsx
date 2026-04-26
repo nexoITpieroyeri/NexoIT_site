@@ -59,11 +59,7 @@ const Testimonials = () => {
           <p>Empresas que confían en NexoIT para transformar sus ideas en soluciones digitales.</p>
         </div>
 
-        <div
-          className="testimonials-wrapper"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className="testimonials-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <button className="testimonial-arrow testimonial-arrow--prev" onClick={prevSlide} aria-label="Anterior">
             <ChevronIcon direction="left" />
           </button>
@@ -89,7 +85,7 @@ const Testimonials = () => {
                   className={`testimonial-slide${activeIndex === i ? ' active' : ''} ${isTransitioning && activeIndex === i ? `slide-${slideDirection}` : ''}`}
                 >
                   <div className="testimonial-slide__number">{String(i + 1).padStart(2, '0')}</div>
-                  <div className="testimonial-slide__quote">"</div>
+                  <div className="testimonial-slide__quote">&quot;</div>
                   <p className="testimonial-slide__text">{t.text}</p>
                   <div className="testimonial-slide__highlight">{t.highlight}</div>
                   <div className="testimonial-slide__author">

@@ -48,7 +48,9 @@ const Hero = () => {
     <section className="hero">
       <div className="container hero__grid">
         <div className="hero__copy animate-blur-in">
-          <p className="pill animate-scale-in animate-delay-1"><ShinyText text="Ingeniería de software • Web • Apps • Automatización" speed={4} /></p>
+          <p className="pill animate-scale-in animate-delay-1">
+            <ShinyText text="Ingeniería de software | Web | Apps | Automatización" speed={4} />
+          </p>
           <h1 className="animate-scale-in animate-delay-2">
             Convertimos ideas en{' '}
             <span className="grad gradient-animated">
@@ -58,8 +60,9 @@ const Hero = () => {
             <ShinyText text="listas para crecer." speed={3} />
           </h1>
           <p className="lead animate-scale-in animate-delay-3">
-            Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas enfocado en crear soluciones rápidas, seguras y escalables:
-            páginas web, aplicaciones móviles, sistemas internos, software a medida y apoyo en proyectos.
+            Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas enfocado en crear soluciones rápidas,
+            seguras y escalables: páginas web, aplicaciones móviles, sistemas internos, software a medida y apoyo en
+            proyectos.
           </p>
 
           <div className="hero__stats animate-scale-in animate-delay-3">
@@ -81,7 +84,6 @@ const Hero = () => {
             <a className="btn" href="#contacto">Quiero una cotización</a>
             <a className="btn btn--ghost" href="#servicios">Ver servicios</a>
           </div>
-
         </div>
 
         <div className="hero__card animate-slide-right">
@@ -91,7 +93,14 @@ const Hero = () => {
             </div>
 
             <div className="preview">
-              <img src="/assets/img/logo.jpg" alt="NexoIT" className="preview__img" loading="eager" fetchpriority="high" decoding="async" />
+              <img
+                src="/assets/img/logo.jpg"
+                alt="NexoIT"
+                className="preview__img"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
               <div className="preview__overlay">
                 <p className="preview__title">NexoIT</p>
                 <p className="preview__sub">Soluciones que conectan</p>
@@ -101,21 +110,21 @@ const Hero = () => {
             <div className="card__row">
               <div className="mini">
                 <span className="mini__k">Web</span>
-                <span className="mini__t">Landing • Ecommerce • Portafolio</span>
+                <span className="mini__t">Landing | Ecommerce | Portafolio</span>
               </div>
               <div className="mini">
                 <span className="mini__k">Apps</span>
-                <span className="mini__t">Android • iOS • PWA</span>
+                <span className="mini__t">Android | iOS | PWA</span>
               </div>
               <div className="mini">
                 <span className="mini__k">Sistemas</span>
-                <span className="mini__t">ERP • Gestión • Automatización</span>
+                <span className="mini__t">ERP | Gestión | Automatización</span>
               </div>
             </div>
 
             <div className="card__actions">
               <a className="btn btn--full" href="#video">Ver video</a>
-              <a className="link" href="#portafolio">Explorar trabajos →</a>
+              <a className="link" href="#portafolio">Explorar trabajos -&gt;</a>
             </div>
           </div>
         </div>

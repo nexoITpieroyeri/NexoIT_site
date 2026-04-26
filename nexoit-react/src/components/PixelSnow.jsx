@@ -180,7 +180,6 @@ export default function PixelSnow({
   const rendererRef = useRef(null);
   const materialRef = useRef(null);
   const resizeTimeoutRef = useRef(null);
-  const densityRef = useRef(density);
 
   const variantValue = useMemo(() => {
     return variant === 'round' ? 1.0 : variant === 'snowflake' ? 2.0 : 0.0;
@@ -292,7 +291,6 @@ export default function PixelSnow({
     window.addEventListener('resize', handleResize);
 
     const startTime = performance.now();
-    let frameCount = 0;
     let lastFpsUpdate = performance.now();
 
     const animate = () => {
@@ -302,11 +300,9 @@ export default function PixelSnow({
         material.uniforms.uTime.value = (performance.now() - startTime) * 0.001;
         renderer.render(scene, camera);
 
-        frameCount++;
         const now = performance.now();
         if (now - lastFpsUpdate > 1000) {
           adjustDensity();
-          frameCount = 0;
           lastFpsUpdate = now;
         }
       }

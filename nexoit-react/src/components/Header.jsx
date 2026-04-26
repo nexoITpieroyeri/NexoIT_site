@@ -4,21 +4,20 @@ import { NAV_LINKS } from '../data/constants';
 const Header = ({ onNavClick }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [headerStyle, setHeaderStyle] = useState({});
+  const [activeSection, setActiveSection] = useState('');
   const navRef = useRef(null);
   const navBtnRef = useRef(null);
-
-  const [activeSection, setActiveSection] = useState('');
 
   const handleScroll = useCallback(() => {
     if (window.scrollY > 50) {
       setHeaderStyle({
         background: 'linear-gradient(135deg, rgba(2,3,12,.92), rgba(4,6,20,.9))',
-        boxShadow: '0 4px 30px rgba(0,0,0,.4), 0 1px 0 rgba(46,245,154,.06)'
+        boxShadow: '0 4px 30px rgba(0,0,0,.4), 0 1px 0 rgba(46,245,154,.06)',
       });
     } else {
       setHeaderStyle({
         background: 'linear-gradient(135deg, rgba(4,6,20,.85), rgba(8,10,28,.82))',
-        boxShadow: 'none'
+        boxShadow: 'none',
       });
     }
   }, []);
@@ -29,7 +28,6 @@ const Header = ({ onNavClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  // Scroll Spy Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -44,10 +42,10 @@ const Header = ({ onNavClick }) => {
 
     NAV_LINKS.forEach((link) => {
       const id = link.href.substring(1);
-      if (id) {
-        const element = document.getElementById(id);
-        if (element) observer.observe(element);
-      }
+      if (!id) return;
+
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
@@ -55,11 +53,13 @@ const Header = ({ onNavClick }) => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (isNavOpen && 
-          navRef.current && 
-          !navRef.current.contains(e.target) && 
-          navBtnRef.current && 
-          !navBtnRef.current.contains(e.target)) {
+      if (
+        isNavOpen &&
+        navRef.current &&
+        !navRef.current.contains(e.target) &&
+        navBtnRef.current &&
+        !navBtnRef.current.contains(e.target)
+      ) {
         setIsNavOpen(false);
       }
     };
@@ -70,7 +70,7 @@ const Header = ({ onNavClick }) => {
 
   const toggleNav = (e) => {
     e.stopPropagation();
-    setIsNavOpen(prev => !prev);
+    setIsNavOpen((prev) => !prev);
   };
 
   const closeNav = () => {
@@ -81,7 +81,7 @@ const Header = ({ onNavClick }) => {
   return (
     <header className="header" id="top" style={headerStyle}>
       <div className="container header__inner">
-        <a className="brand" href="#top" aria-label="Ir al inicio" onClick={() => { if(onNavClick) onNavClick(); }}>
+        <a className="brand" href="#top" aria-label="Ir al inicio" onClick={() => { if (onNavClick) onNavClick(); }}>
           <img className="brand__logo" src="/assets/img/logo.jpg" alt="Logo de NexoIT" width="44" height="44" loading="eager" />
           <div className="brand__text">
             <span className="brand__name">NexoIT</span>
@@ -93,23 +93,23 @@ const Header = ({ onNavClick }) => {
           ref={navBtnRef}
           className={`navbtn${isNavOpen ? ' open' : ''}`}
           onClick={toggleNav}
-          aria-label={isNavOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={isNavOpen ? 'Cerrar menú' : 'Abrir menú'}
           aria-controls="nav"
           aria-expanded={isNavOpen}
         >
           <span></span><span></span><span></span>
         </button>
 
-        <nav 
+        <nav
           ref={navRef}
-          className={`nav${isNavOpen ? ' open' : ''}`} 
+          className={`nav${isNavOpen ? ' open' : ''}`}
           id="nav"
           onClick={(e) => e.stopPropagation()}
         >
-          {NAV_LINKS.map(link => (
-            <a 
-              key={link.href} 
-              href={link.href} 
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
               className={activeSection === link.href ? 'active' : ''}
               onClick={closeNav}
             >

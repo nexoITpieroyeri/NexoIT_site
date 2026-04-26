@@ -7,55 +7,59 @@ const Contact = () => {
     numero: '',
     correo: '',
     necesita: '',
-    descripcion: ''
+    descripcion: '',
   });
   const [copyText, setCopyText] = useState('Copiar mensaje');
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   }, []);
 
   const buildMsg = useCallback(() => {
     const { nombre, numero, correo, necesita, descripcion } = formData;
     return [
       `Hola, soy ${nombre}.`,
-      "",
+      '',
       `Número: ${numero}`,
       `Correo: ${correo}`,
       `Necesito: ${necesita}`,
-      "",
-      "Descripción:",
-      descripcion
-    ].join("\n");
+      '',
+      'Descripción:',
+      descripcion,
+    ].join('\n');
   }, [formData]);
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    const { nombre, numero, correo, necesita, descripcion } = formData;
-    if (!nombre || !numero || !correo || !necesita || !descripcion) {
-      alert("Completa todos los campos para enviar tu solicitud.");
-      return;
-    }
-    const msg = buildMsg();
-    window.open(`https://wa.me/${COMPANY_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
-  }, [formData, buildMsg]);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      const { nombre, numero, correo, necesita, descripcion } = formData;
+      if (!nombre || !numero || !correo || !necesita || !descripcion) {
+        alert('Completa todos los campos para enviar tu solicitud.');
+        return;
+      }
+
+      const msg = buildMsg();
+      window.open(`https://wa.me/${COMPANY_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+    },
+    [formData, buildMsg]
+  );
 
   const handleCopy = useCallback(async () => {
     const msg = buildMsg();
     try {
       await navigator.clipboard.writeText(msg);
-      setCopyText("Copiado");
-      setTimeout(() => setCopyText("Copiar mensaje"), 1100);
+      setCopyText('Copiado');
+      setTimeout(() => setCopyText('Copiar mensaje'), 1100);
     } catch {
-      const ta = document.createElement("textarea");
+      const ta = document.createElement('textarea');
       ta.value = msg;
       document.body.appendChild(ta);
       ta.select();
-      document.execCommand("copy");
+      document.execCommand('copy');
       document.body.removeChild(ta);
-      setCopyText("Copiado");
-      setTimeout(() => setCopyText("Copiar mensaje"), 1100);
+      setCopyText('Copiado');
+      setTimeout(() => setCopyText('Copiar mensaje'), 1100);
     }
   }, [buildMsg]);
 
@@ -104,7 +108,7 @@ const Contact = () => {
               </label>
               <label>
                 Número (WhatsApp)
-                <input type="tel" required name="numero" placeholder="Tu número" inputMode="tel" autoComplete="tel" pattern="[0-9+\s\-]{7,15}" value={formData.numero} onChange={handleChange} />
+                <input type="tel" required name="numero" placeholder="Tu número" inputMode="tel" autoComplete="tel" pattern="[0-9+\\s\\-]{7,15}" value={formData.numero} onChange={handleChange} />
               </label>
             </div>
 

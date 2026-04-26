@@ -381,3 +381,27 @@ html, body, #root {
   will-change: transform;
   transition: transform 0.1s linear;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .shiny-text,
+  .fuzzy-overlay,
+  .tech-carousel__track,
+  .testimonial-slide.slide-next,
+  .testimonial-slide.slide-prev,
+  .animate-fade-up,
+  .animate-fade-in,
+  .parallax-element {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

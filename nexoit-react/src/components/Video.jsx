@@ -33,14 +33,13 @@ const Video = () => {
 
         <div className="video">
           <div className="video__player-wrapper">
-            <video 
+            <video
               ref={videoRef}
-              className="video__player" 
-              controls 
-              playsInline 
-              preload="metadata" 
+              className="video__player"
+              controls
+              playsInline
+              preload="metadata"
               poster="/assets/img/logo.jpg"
-              volume={0.6}
             >
               <source src="/assets/video/promo.mp4" type="video/mp4" />
               Tu navegador no soporta video HTML5.
