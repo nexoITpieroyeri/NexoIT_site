@@ -1481,6 +1481,54 @@ input:hover, select:hover, textarea:hover {
   height:1px;
   background:linear-gradient(90deg, transparent, rgba(46,245,154,.3), rgba(67,200,255,.2), transparent);
 }
+
+/* Footer background logo with left-to-right blur gradient */
+.footer::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:40%;
+  height:100%;
+  background-image: url('/assets/img/logo.jpg'), linear-gradient(to left, rgba(0,0,0,.7), rgba(0,0,0,0));
+  background-position: right center, left center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, cover;
+  filter: blur(6px);
+  opacity: 0.6;
+  pointer-events:none;
+  z-index:0;
+  mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,.2) 40%, rgba(0,0,0,.6) 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,.2) 40%, rgba(0,0,0,.6) 100%);
+  animation: footer-logo-float 14s ease-in-out infinite alternate;
+}
+
+@keyframes footer-logo-float {
+  0% { transform: translate(0,0) scale(1); }
+  100% { transform: translate(-6%, -2%) scale(1.02); }
+}
+/* Adapt footer background logo for smaller screens (Option B) */
+@media (max-width: 1280px){
+  .footer::after{
+    width: 30%;
+    height: 70px;
+    bottom: 0;
+    right: 0;
+    background-image: none;
+    opacity: 0.35;
+  }
+}
+@media (max-width: 1024px){
+  .footer::after{
+    width: 20%;
+    height: 60px;
+    bottom: 0;
+    right: 0;
+    background-image: none;
+    opacity: 0.25;
+    background: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0));
+  }
+}
 .brand--footer .brand__logo{width:40px; height:40px}
 .footer__grid{
   display:grid;
