@@ -1,0 +1,121 @@
+---
+import { PORTFOLIO_PROJECTS } from '../data/constants';
+---
+<section class="section" id="portafolio">
+  <div class="container">
+    <div class="section__head animate-on-scroll">
+      <h2>Portafolio</h2>
+      <p>Proyectos y soluciones que hemos construido con nuestros clientes.</p>
+    </div>
+<div class="portfolio__filters animate-on-scroll animate-delay-1">
+  <button class="portfolio__filter active" data-filter="all" aria-pressed="true">Todos</button>
+  <button class="portfolio__filter" data-filter="ecommerce" aria-pressed="false">E-commerce</button>
+  <button class="portfolio__filter" data-filter="web" aria-pressed="false">Sitios Web</button>
+  <button class="portfolio__filter" data-filter="sistema" aria-pressed="false">Sistemas</button>
+  <button class="portfolio__filter" data-filter="app" aria-pressed="false">Aplicaciones</button>
+</div>
+<div id="filterSpinner" class="spinner hidden" style="text-align:center;padding:20px;display:none">
+  <div style="width:32px;height:32px;border:3px solid var(--color-ash-gray);border-top-color:var(--color-spring-green);border-radius:50%;animation:spin 1s linear infinite;display:inline-block"></div>
+</div>
+<div class="portfolio" id="portfolioGrid">
+      {PORTFOLIO_PROJECTS.map(project => (
+        <div class="pcard animate-on-scroll" data-category={project.category}>
+          <a class="pcard__media" href={`/proyectos/${project.slug}`}>
+            <img src={project.image} alt={`Proyecto: ${project.title}`} loading="lazy" decoding="async" />
+            {project.badge && <div class="pcard__badge">{project.badge}</div>}
+          </a>
+          <div class="pcard__body">
+            <div class="pcard__top">
+              <h3>{project.title}</h3>
+              <span class="pcard__year">{project.year}</span>
+            </div>
+            <p class="pcard__description">{project.description}</p>
+            <div class="pcard__tags">
+              {project.tags.map(tag => <span class="chip">{tag}</span>)}
+            </div>
+            <div class="pcard__actions">
+              <a class="btn btn--ghost btn--sm" href={`/proyectos/${project.slug}`}>
+                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                Ver descripción
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+// Portfolio filter - solo lógica específica del componente
+(function() {
+  if (window.nexoInitialized) {
+    initPortfolioFilter();
+  } else {
+    window.addEventListener('load', initPortfolioFilter);
+  }
+
+  function initPortfolioFilter() {
+    const filterContainer = document.querySelector('.portfolio__filters');
+    if (!filterContainer) return;
+
+    const projects = document.querySelectorAll('#portfolioGrid .pcard');
+    const spinner = document.getElementById('filterSpinner');
+
+    filterContainer.addEventListener('click', function(e) {
+      const target = e.target;
+      const filterBtn = target.closest('.portfolio__filter');
+      if (!filterBtn) return;
+
+      const category = filterBtn.dataset.filter;
+      if (!category) return;
+
+      // Update active state
+      filterContainer.querySelectorAll('.portfolio__filter').forEach(function(f) {
+        f.classList.remove('active');
+        f.setAttribute('aria-pressed', 'false');
+      });
+      filterBtn.classList.add('active');
+      filterBtn.setAttribute('aria-pressed', 'true');
+
+      // Show spinner
+      if (spinner) {
+        spinner.classList.remove('hidden');
+        spinner.style.display = 'block';
+      }
+
+      // Filter
+      requestAnimationFrame(function() {
+        projects.forEach(function(project) {
+          const el = project;
+          const pc = el.dataset.category;
+          const isMatch = category === 'all' || pc === category;
+
+          if (isMatch) {
+            el.style.display = 'flex';
+            requestAnimationFrame(function() {
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            });
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(12px)';
+            setTimeout(function() {
+              if (el.style.opacity === '0') {
+                el.style.display = 'none';
+              }
+            }, 300);
+          }
+        });
+
+        setTimeout(function() {
+          if (spinner) {
+            spinner.classList.add('hidden');
+            spinner.style.display = 'none';
+          }
+        }, 400);
+      });
+    });
+  }
+})();
+</script>

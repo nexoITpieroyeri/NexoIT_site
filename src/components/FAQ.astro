@@ -1,0 +1,53 @@
+---
+import { FAQS } from '../data/constants';
+---
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section__head">
+      <h2>Preguntas Frecuentes</h2>
+      <p>Encuentra respuestas a las consultas más comunes sobre nuestros servicios.</p>
+    </div>
+    <div class="faq">
+      {FAQS.map((faq, i) => (
+        <details class="faq__item">
+          <summary class="faq__question">{faq.question}</summary>
+          <div class="faq__answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+// FAQ - lógica específica
+(function() {
+  const faqContainer = document.querySelector('.faq');
+  if (!faqContainer) return;
+
+  faqContainer.addEventListener('click', function(e) {
+    const summary = e.target.closest('.faq__question');
+    if (!summary) return;
+
+    const item = summary.closest('.faq__item');
+    if (!item) return;
+    if (item.dataset.processing === 'true') return;
+    
+    item.dataset.processing = 'true';
+    const isOpening = !item.hasAttribute('open');
+    
+    if (isOpening) {
+      faqContainer.querySelectorAll('.faq__item').forEach(function(other) {
+        if (other !== item && other.hasAttribute('open')) {
+          other.removeAttribute('open');
+        }
+      });
+    }
+    
+    setTimeout(function() {
+      item.dataset.processing = 'false';
+    }, 300);
+  });
+})();
+</script>

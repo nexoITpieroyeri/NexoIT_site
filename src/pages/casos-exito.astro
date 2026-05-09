@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { PORTFOLIO_PROJECTS } from '../data/constants';
+---
+
+<Layout title="Casos de Éxito | NexoIT" description="Casos de éxito detallados de NexoIT. Descubre cómo ayudamos a nuestros clientes a transformar sus negocios con tecnología." canonical="https://nexoit-site.pages.dev/casos-exito">
+  <Header />
+  <main id="contenido">
+    <section class="hero hero--mini">
+      <div class="container hero__grid">
+        <div class="hero__left">
+          <div class="pill">Casos de Éxito</div>
+          <h1>Cómo Transformamos Negocios con Tecnología</h1>
+          <p class="muted">Descubre las historias de éxito de nuestros clientes y cómo NexoIT ayudó a impulsar su crecimiento digital.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#casos">Ver casos de éxito</a>
+            <a class="btn btn--ghost" href="/#contacto">Contáctanos</a>
+          </div>
+        </div>
+        <div class="hero__right">
+          <div class="shot">
+            <img src="/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce1.webp" alt="Casos de éxito NexoIT" style="width:100%;height:100%;object-fit:cover;border-radius:18px;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+    <div class="stats-highlight">
+      <div><div class="stats-highlight__num">+50</div><div class="stats-highlight__label">Proyectos Completados</div></div>
+      <div><div class="stats-highlight__num">95%</div><div class="stats-highlight__label">Clientes Satisfechos</div></div>
+      <div><div class="stats-highlight__num">+3</div><div class="stats-highlight__label">Años de Experiencia</div></div>
+      <div><div class="stats-highlight__num">+5</div><div class="stats-highlight__label">Países</div></div>
+    </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="casos">
+      <div class="container">
+        <div class="section__head">
+          <h2>Historias de Éxito</h2>
+          <p>Proyectos transformadores que generaron impacto real en los negocios de nuestros clientes.</p>
+        </div>
+
+  <article class="case-study animate-on-scroll animate-delay-1">
+    <div class="case-header">
+      <div class="pill">E-Commerce • Sistema de Gestión</div>
+      <h3>Plataforma de E-commerce para Tienda de Ropa</h3>
+    </div>
+    <div class="case-grid">
+      <div class="case-description">
+        <div class="case-problem">
+          <h4>❌ El Problema</h4>
+          <p>Tienda de ropa en Cusco con inventario desorganizado, sin control de ventas en tiempo real, y pérdida de datos por procesos manuales en Excel.</p>
+        </div>
+        <div class="case-solution">
+          <h4>✅ La Solución</h4>
+          <p>Sistema completo de gestión con inventario automatizado, control de ventas en tiempo real, notificaciones de pedidos, y dashboard administrativo.</p>
+        </div>
+      </div>
+      <div class="case-results">
+        <div>
+          <h4>📊 Resultados</h4>
+          <ul class="check"><li>+60% reducción en tiempo de espera</li><li>Inventario 100% organizado</li><li>+40% incremento en ventas</li><li>Ahorro de 15 horas/semana</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="case-technologies">
+      <h4>🛠 Tecnologías</h4>
+      <div class="chips-row">
+        <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">JavaScript</span><span class="chip">API REST</span>
+      </div>
+    </div>
+    <div class="case-gallery-block">
+      <h4>📸 Galería</h4>
+      <div class="gallery">
+        <img src="/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce1.webp" alt="Dashboard" loading="lazy" />
+        <img src="/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce2.webp" alt="Ventas" loading="lazy" />
+        <img src="/assets/img/projects/fotosPlataformadeE-commerce/fotoPlataformadeE-commerce3.webp" alt="Productos" loading="lazy" />
+      </div>
+    </div>
+  </article>
+
+  <article class="case-study animate-on-scroll animate-delay-2">
+    <div class="case-header">
+      <div class="pill">SaaS • Bot Automatizado</div>
+      <h3>Sistema de Préstamo con Bot de Atención</h3>
+    </div>
+    <div class="case-grid">
+      <div class="case-description">
+        <div class="case-problem">
+          <h4>❌ El Problema</h4>
+          <p>Financiera con gestión manual de préstamos, atención limitada por horarios de oficina, y clientes esperando respuestas por días.</p>
+        </div>
+        <div class="case-solution">
+          <h4>✅ La Solución</h4>
+          <p>Sistema SaaS con bot automatizado para atención 24/7 por WhatsApp, gestión de préstamos y reportes en tiempo real.</p>
+        </div>
+      </div>
+      <div class="case-results">
+        <div>
+          <h4>📊 Resultados</h4>
+          <ul class="check"><li>Atención 24/7 con bot</li><li>+80% más rápido en gestión</li><li>95% reducción en tiempo de respuesta</li><li>Dashboard con métricas en tiempo real</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="case-technologies">
+      <h4>🛠 Tecnologías</h4>
+      <div class="chips-row">
+        <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">WhatsApp API</span><span class="chip">Firebase</span>
+      </div>
+    </div>
+    <div class="case-gallery-block">
+      <h4>📸 Galería</h4>
+      <div class="gallery">
+        <img src="/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot1.webp" alt="Dashboard" loading="lazy" />
+        <img src="/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot2.webp" alt="Panel" loading="lazy" />
+        <img src="/assets/img/projects/fotosSistemadePréstamoconBot/fotosSistemadePréstamoconBot3.webp" alt="Estadísticas" loading="lazy" />
+      </div>
+    </div>
+  </article>
+
+  <article class="case-study animate-on-scroll animate-delay-3">
+    <div class="case-header">
+      <div class="pill">App Web • PWA</div>
+      <h3>Aplicación Web para Lavandería</h3>
+    </div>
+    <div class="case-grid">
+      <div class="case-description">
+        <div class="case-problem">
+          <h4>❌ El Problema</h4>
+          <p>Lavandería sin sistema digital, clientes llamaban constantemente para saber estado de sus prendas, gestión de turnos caótica.</p>
+        </div>
+        <div class="case-solution">
+          <h4>✅ La Solución</h4>
+          <p>App web progresiva (PWA) con gestión de pedidos, seguimiento en tiempo real, catálogo de servicios y notificaciones automáticas.</p>
+        </div>
+      </div>
+      <div class="case-results">
+        <div>
+          <h4>📊 Resultados</h4>
+          <ul class="check"><li>+300 nuevos clientes activos</li><li>+500 pedidos/mes</li><li>Seguimiento en tiempo real</li><li>100% reducción de llamadas de consulta</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="case-gallery-block">
+      <h4>📸 Galería</h4>
+      <div class="gallery">
+        <img src="/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería1.webp" alt="App" loading="lazy" />
+        <img src="/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería2.webp" alt="Catálogo" loading="lazy" />
+        <img src="/assets/img/projects/fotosAppWebLavandería/fotosAppWebLavandería3.webp" alt="Seguimiento" loading="lazy" />
+      </div>
+    </div>
+  </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+    <div class="cta-banner">
+      <div><h3>¿Quieres un caso de éxito similar?</h3><p class="muted">Cuéntanos tu negocio y te mostramos cómo podemos ayudarlo a crecer.</p></div>
+      <a class="btn" href="/#contacto">Empezar Proyecto</a>
+    </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,23 @@
+---
+import { TEAM_MEMBERS } from '../data/constants';
+---
+<section class="section" id="equipo">
+  <div class="container">
+    <div class="section__head animate-on-scroll">
+      <h2>Equipo</h2>
+      <p>Ingenieros de sistemas enfocados en entregar soluciones reales, con comunicación clara y resultados.</p>
+    </div>
+    <div class="team team--cards">
+      {TEAM_MEMBERS.map(member => (
+        <article class="person animate-on-scroll">
+          <div class="avatar"><span>{member.initials}</span></div>
+          <div class="person__info">
+            <h3>{member.name}</h3>
+            <p class="muted">{member.role}</p>
+            <p>{member.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

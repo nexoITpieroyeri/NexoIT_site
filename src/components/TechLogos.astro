@@ -1,0 +1,25 @@
+---
+import { TECH_LOGOS } from '../data/constants';
+
+// Duplicar array para efecto de scroll infinito
+const DOUBLED_LOGOS = [...TECH_LOGOS, ...TECH_LOGOS];
+---
+<section class="section section--alt" id="tecnologias">
+  <div class="container">
+    <div class="section__head animate-on-scroll">
+      <h2>Tecnologías que dominamos</h2>
+      <p>Utilizamos las herramientas más modernas y eficientes para construir soluciones robustas.</p>
+    </div>
+  </div>
+  <div class="tech-carousel-wrapper">
+    <div class="tech-carousel">
+      <div class="tech-carousel__track">
+        {DOUBLED_LOGOS.map((tech, i) => (
+          <div class="tech-carousel__item" title={tech.name}>
+            <img src={tech.url} alt={tech.name} class="tech-carousel__logo" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

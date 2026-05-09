@@ -1,0 +1,145 @@
+---
+import { PLANS } from '../data/constants';
+---
+<section class="section section--alt" id="planes">
+  <div class="container">
+    <div class="section__head">
+      <h2>Planes para tu negocio</h2>
+      <p class="subtitle">Selecciona la categoría que necesitas. La cotización final varía según alcance.</p>
+    </div>
+    <div class="categories">
+      <button class="cat-btn active cat-btn-trigger" data-id="web">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="cat-info"><div class="cat-name">Páginas Web</div><div class="cat-count">3 planes</div></div>
+      </button>
+      <button class="cat-btn cat-btn-trigger" data-id="sistemas">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17h7M17 14v7"/></svg>
+        </div>
+        <div class="cat-info"><div class="cat-name">Sistemas</div><div class="cat-count">2 planes</div></div>
+      </button>
+      <button class="cat-btn cat-btn-trigger" data-id="apps">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="18" r="1" fill="#a8ff53" stroke="none"/></svg>
+        </div>
+        <div class="cat-info"><div class="cat-name">Apps</div><div class="cat-count">2 planes</div></div>
+      </button>
+    </div>
+
+    {Object.entries(PLANS).map(([categoryId, plans]) => (
+      <div id={`panel-${categoryId}`} class={`panel${categoryId === 'web' ? ' active' : ''}`}>
+        {plans.map(plan => (
+          <div class={`plan-card${plan.featured ? ' featured' : ''}`}>
+            <div style="position:relative;z-index:10">
+              {plan.featured && <div class="badge">Más pedido</div>}
+              <p class="plan-tag">{plan.tag}</p>
+              <h3 class="plan-name">{plan.name}</h3>
+              <p class="plan-desc">{plan.description}</p>
+              <div class="price-row">
+                <span class="price-from">Desde</span>
+                <span class="price-num">{plan.price}</span>
+              </div>
+              <p class="price-note">{plan.note}</p>
+              <div class="divider"></div>
+              <p class="feat-title">Incluye</p>
+              <ul class="features">
+                {plan.features.map(f => <li>{f}</li>)}
+              </ul>
+              <button
+                class={`btn${plan.featured ? ' btn-filled' : ' btn-outline'} plan-cta-btn`}
+                data-plan={plan.name}
+                data-price={plan.price}
+                data-desc={plan.description}
+              >
+                Cotizar ahora
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+
+    <p class="footer-note">¿Necesitas algo diferente? <span>Escríbenos</span> y armamos un plan a tu medida.</p>
+  </div>
+</section>
+
+<script>
+// Pricing - lógica específica
+(function() {
+  // Cambiar planes
+  document.querySelectorAll('.cat-btn-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const id = btn.getAttribute('data-id');
+      if (!id) return;
+
+      document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+      var panel = document.getElementById('panel-' + id);
+      if (panel) panel.classList.add('active');
+      btn.classList.add('active');
+    });
+  });
+
+  // Toast para errores
+  function showToast(msg) {
+    var toast = document.createElement('div');
+    toast.className = 'toast-error';
+    toast.style.cssText = 'position:fixed;bottom:20px;right:20px;background:var(--color-action-red);color:white;padding:12px 20px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:9999;font-family:var(--font-geist-regular);font-size:14px;animation:slideInRight 0.3s ease;';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.3s ease';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 3000);
+  }
+
+  if (!document.getElementById('toast-styles')) {
+    var style = document.createElement('style');
+    style.id = 'toast-styles';
+    style.textContent = '@keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}';
+    document.head.appendChild(style);
+  }
+
+  // Cotizar planes
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    var btn = target.closest('.plan-cta-btn');
+
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      var originalText = btn.textContent || 'Cotizar ahora';
+      btn.textContent = 'Procesando...';
+      btn.disabled = true;
+
+      var plan = btn.dataset.plan || '';
+      var price = btn.dataset.price || '';
+      var desc = btn.dataset.desc || '';
+
+      try {
+        if (typeof window.cotizarPlan === 'function') {
+          window.cotizarPlan(plan, price, desc);
+        } else {
+          showToast('Error al conectar. Intenta de nuevo.');
+          btn.textContent = 'Error';
+          setTimeout(function() {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 2000);
+        }
+      } catch (err) {
+        showToast('Ocurrió un error. Intenta nuevamente.');
+        btn.textContent = 'Reintentar';
+        setTimeout(function() {
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 2000);
+      }
+    }
+  });
+})();
+</script>

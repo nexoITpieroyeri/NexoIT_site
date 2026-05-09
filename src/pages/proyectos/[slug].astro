@@ -1,0 +1,112 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { PORTFOLIO_PROJECTS, COMPANY_WHATSAPP } from '../../data/constants';
+
+export function getStaticPaths() {
+  return PORTFOLIO_PROJECTS.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | NexoIT`} description={project.description}>
+  <Header />
+  <main id="contenido">
+    <section class="hero hero--mini">
+      <div class="container hero__grid">
+        <div class="hero__left">
+          <div class="pill">Portafolio • Proyecto</div>
+          <h1>{project.title}</h1>
+          <p class="muted">{project.description}</p>
+          <div class="project-meta" style="display:flex;flex-wrap:wrap;gap:12px;margin:16px 0;">
+            <span class="chip"><strong>Año:</strong> {project.year}</span>
+            {project.tags.map((tag: string) => <span class="chip">{tag}</span>)}
+          </div>
+          <div class="hero__cta">
+            <a class="btn" href="/#portafolio">Volver al portafolio</a>
+            <a class="btn btn--ghost" href="/#contacto">Cotizar</a>
+          </div>
+        </div>
+        <div class="hero__right">
+          <div class="shot">
+            <img src={project.image} alt={project.title} style="width:100%;height:100%;object-fit:cover;border-radius:18px;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="detail">
+          <div class="detail__block">
+            <h2>Descripción</h2>
+            <p>{project.fullDescription || project.description}</p>
+          </div>
+
+          {project.features && project.features.length > 0 && (
+            <div class="detail__block">
+              <h2>Funcionalidades</h2>
+              <ul class="detail__list">
+                {project.features.map((f: string) => <li>{f}</li>)}
+              </ul>
+            </div>
+          )}
+
+  {project.gallery && project.gallery.length > 1 && (
+    <div class="detail__block">
+      <h3>Galería</h3>
+      <div class="gallery" id="projectGallery">
+        {project.gallery.map((img: string, i: number) => (
+          <img
+            src={img}
+            alt={`Pantalla ${i + 1} del proyecto ${project.title}`}
+            loading="lazy"
+            data-gallery-index={String(i)}
+            style="cursor:pointer"
+          />
+        ))}
+      </div>
+    </div>
+  )}
+
+  <div class="cta3" style="margin-top:18px;">
+    <div>
+      <h3>¿Quieres algo similar?</h3>
+      <p class="muted">Cuéntanos tu caso y te proponemos un plan por etapas.</p>
+    </div>
+    <a class="btn" href={`https://wa.me/${COMPANY_WHATSAPP}?text=Hola,%20busco%20crear%20un%20proyecto%20similar%20a%20${encodeURIComponent(project.title)}.`} target="_blank" rel="noopener noreferrer">Escribir ahora</a>
+  </div>
+  </div>
+  </div>
+  </section>
+  </main>
+
+<script define:vars={{ gallery: project.gallery, title: project.title }}>
+// Gallery lightbox
+(function() {
+  function initGallery() {
+    var galleryEl = document.getElementById('projectGallery');
+    if (!galleryEl || typeof window.openLightbox !== 'function') {
+      setTimeout(initGallery, 300);
+      return;
+    }
+    galleryEl.querySelectorAll('img[data-gallery-index]').forEach(function(img) {
+      img.addEventListener('click', function() {
+        var src = img.getAttribute('src') || '';
+        window.openLightbox(src, 'Proyecto ' + title, gallery);
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGallery);
+  } else {
+    initGallery();
+  }
+})();
+</script>
+
+  </Layout>

@@ -1,0 +1,20 @@
+---
+import { PROCESS_STEPS } from '../data/constants';
+---
+<section class="section section--alt" id="proceso">
+  <div class="container">
+    <div class="section__head">
+      <h2>Proceso de trabajo</h2>
+      <p>Simple, claro y con entregas por etapas para que siempre tengas control del avance.</p>
+    </div>
+    <div class="steps">
+      {PROCESS_STEPS.map(step => (
+        <div class="step">
+          <span class="step__n">{step.number}</span>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,165 @@
+---
+import { COMPANY_WHATSAPP, COMPANY_EMAIL, SOCIAL } from '../data/constants';
+---
+<section class="section" id="contacto">
+  <div class="container">
+    <div class="section__head">
+      <h2>Contacto</h2>
+      <p>Contáctanos para cotizar tu proyecto o resolver tus dudas.</p>
+    </div>
+    <div class="contact">
+      <div class="contact__side animate-slide-left">
+        <div class="contactcard">
+          <h3 class="grad">Escríbenos</h3>
+          <a class="contactcard__link" href={`https://wa.me/${COMPANY_WHATSAPP}`} target="_blank" rel="noopener noreferrer">
+            WhatsApp: 925585217
+          </a>
+          <a class="contactcard__link" href={`mailto:${COMPANY_EMAIL}`}>
+            Correo: {COMPANY_EMAIL}
+          </a>
+        </div>
+        <div class="contactcard">
+          <h3 class="grad">Redes sociales</h3>
+          <p class="muted">Síguenos para ver avances y contenido.</p>
+          <div class="social">
+            <a class="social__btn" href={SOCIAL.facebook} aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/img/icons/facebook.svg" alt="Facebook NexoIT" loading="eager" />
+            </a>
+            <a class="social__btn" href={SOCIAL.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/img/icons/linkedin.svg" alt="LinkedIn NexoIT" loading="eager" />
+            </a>
+            <a class="social__btn" href={SOCIAL.tiktok} aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/img/icons/tiktok.svg" alt="TikTok NexoIT" loading="eager" />
+            </a>
+            <a class="social__btn" href={SOCIAL.instagram} aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <img src="/assets/img/icons/instagram.svg" alt="Instagram NexoIT" loading="eager" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <form class="form animate-slide-right" id="contactForm" data-whatsapp={COMPANY_WHATSAPP}>
+        <div class="row">
+          <label>Nombre <input required name="nombre" placeholder="Tu nombre" autocomplete="name" /></label>
+          <label>Número (WhatsApp) <input type="tel" required name="numero" placeholder="Tu número" inputmode="tel" autocomplete="tel" pattern="[0-9+\s\-]{7,15}" /></label>
+        </div>
+        <div class="row">
+          <label>Correo <input type="email" required name="correo" placeholder="tucorreo@email.com" autocomplete="email" /></label>
+          <label>¿Qué necesitas?
+            <select required name="necesita">
+              <option value="" disabled>Selecciona</option>
+              <option>Web / Landing</option>
+              <option>App móvil</option>
+              <option>Sistema / Software</option>
+              <option>Automatización</option>
+              <option>Asesoría / Proyecto</option>
+            </select>
+          </label>
+        </div>
+        <label>Descripción <textarea required name="descripcion" rows="6" placeholder="Cuéntanos tu idea, funcionalidades, fecha ideal y cualquier referencia."></textarea></label>
+        <div class="form__actions">
+          <button class="btn btn--primary" type="submit">
+            <span class="btn-text">Enviar por WhatsApp</span>
+            <span class="btn-spinner" style="display:none;">⏳</span>
+          </button>
+          <button class="btn btn--subtle" type="button" id="copyBtn">
+            <span class="btn-text">Copiar mensaje</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+// Contact form - lógica específica
+(function() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  function validatePhone(phone) {
+    if (!phone) return false;
+    const cleaned = phone.replace(/[\s\-\+\(\)]/g, '');
+    return /^\d{7,15}$/.test(cleaned);
+  }
+
+  function buildMsg(data) {
+    const nombre = data.get('nombre') || '';
+    const numero = data.get('numero') || '';
+    const correo = data.get('correo') || '';
+    const necesita = data.get('necesita') || '';
+    const descripcion = data.get('descripcion') || '';
+    return 'Hola, soy ' + nombre + '.\n\nNúmero: ' + numero + '\nCorreo: ' + correo + '\nNecesito: ' + necesita + '\n\nDescripción:\n' + descripcion;
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const numeroInput = form.querySelector('input[name="numero"]');
+    const numero = numeroInput?.value || '';
+    if (!validatePhone(numero)) {
+      numeroInput?.focus();
+      numeroInput?.setCustomValidity('Ingresa un número válido (7-15 dígitos)');
+      form.reportValidity();
+      numeroInput?.setCustomValidity('');
+      return;
+    }
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn?.querySelector('.btn-text')?.textContent || 'Enviar por WhatsApp';
+
+    if (submitBtn) {
+      const textSpan = submitBtn.querySelector('.btn-text');
+      const spinner = submitBtn.querySelector('.btn-spinner');
+      if (textSpan) textSpan.textContent = 'Procesando...';
+      if (spinner) spinner.style.display = 'inline';
+      submitBtn.disabled = true;
+    }
+
+    const data = new FormData(form);
+    const msg = buildMsg(data);
+
+    setTimeout(function() {
+      const whatsapp = form.dataset.whatsapp || '51925585217';
+      window.open('https://wa.me/' + whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+      form.reset();
+
+      if (submitBtn) {
+        const textSpan = submitBtn.querySelector('.btn-text');
+        const spinner = submitBtn.querySelector('.btn-spinner');
+        if (textSpan) textSpan.textContent = originalText;
+        if (spinner) spinner.style.display = 'none';
+        submitBtn.disabled = false;
+      }
+    }, 800);
+  });
+
+  const copyBtn = document.getElementById('copyBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      if (!form) return;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const numeroInput = form.querySelector('input[name="numero"]');
+      const numero = numeroInput?.value || '';
+      if (!validatePhone(numero)) {
+        numeroInput?.focus();
+        numeroInput?.setCustomValidity('Ingresa un número válido (7-15 dígitos)');
+        form.reportValidity();
+        numeroInput?.setCustomValidity('');
+        return;
+      }
+
+      const data = new FormData(form);
+      const msg = buildMsg(data);
+      navigator.clipboard.writeText(msg).then(function() {
+        copyBtn.textContent = 'Copiado';
+        setTimeout(function() { copyBtn.textContent = 'Copiar mensaje'; }, 1100);
+      }).catch(function() {
+        copyBtn.textContent = 'Error al copiar';
+        setTimeout(function() { copyBtn.textContent = 'Copiar mensaje'; }, 1100);
+      });
+    });
+  }
+})();
+</script>
