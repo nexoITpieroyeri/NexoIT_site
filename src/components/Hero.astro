@@ -1,24 +1,28 @@
 ---
 ---
-<section class="hero">
+<section class="hero" id="inicio">
+  <div class="hero__bg" aria-hidden="true">
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+  </div>
   <div class="container hero__grid">
     <div class="hero__copy">
       <p class="pill">
-        <span>Ingeniería de software | Web | Apps | Automatización</span>
+        <span>Ingeniería de software · Web · Apps · Automatización</span>
       </p>
-  <h1>
-    Convertimos ideas en{' '}
-    <span class="grad">
-      <span id="typewriter" aria-live="polite">soluciones digitales</span>
-    </span>{' '}
-    <br />
-    <span>listas para crecer.</span>
-  </h1>
+      <h1>
+        Convertimos ideas en
+        <span class="grad"><span id="typewriter" aria-live="polite">soluciones digitales</span></span>
+        listas para crecer.
+      </h1>
       <p class="lead">
-        Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas enfocado en crear soluciones rápidas,
-        seguras y escalables: páginas web, aplicaciones móviles, sistemas internos, software a medida y apoyo en
-        proyectos.
+        Somos <strong>NexoIT</strong>, un equipo de ingenieros de sistemas. Construimos páginas web,
+        aplicaciones móviles, sistemas internos y automatizaciones: rápidas, seguras y pensadas para escalar.
       </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="/#contacto">Quiero una cotización</a>
+        <a class="btn btn--ghost" href="/#portafolio">Ver nuestro trabajo</a>
+      </div>
 
       <div class="hero__stats">
         <div class="stat">
@@ -26,42 +30,37 @@
           <span class="stat__label">Años de experiencia</span>
         </div>
         <div class="stat">
-          <span class="stat__number">100%</span>
-          <span class="stat__label">Confiable</span>
-        </div>
-        <div class="stat">
           <span class="stat__number">12+</span>
           <span class="stat__label">Clientes satisfechos</span>
         </div>
-      </div>
-
-      <div class="hero__cta">
-        <a class="btn btn--primary" href="/#contacto">Quiero una cotización</a>
-        <a class="btn btn--ghost" href="/#servicios">Ver servicios</a>
+        <div class="stat">
+          <span class="stat__number">100%</span>
+          <span class="stat__label">Código propio</span>
+        </div>
       </div>
     </div>
 
     <div class="hero__card">
       <div class="card">
-        <div class="card__header">
-          <span class="card__badge">Disponible</span>
+        <div class="termbar" aria-hidden="true">
+          <span class="termbar__dot"></span>
+          <span class="termbar__dot"></span>
+          <span class="termbar__dot"></span>
+          <span class="termbar__title">nexoit — deploy.log</span>
         </div>
-        <div class="preview">
-          <img src="/assets/img/logo.jpg" alt="NexoIT" class="preview__img" loading="eager" decoding="async" />
-          <div class="preview__overlay">
-            <p class="preview__title">NexoIT</p>
-            <p class="preview__sub">Soluciones que conectan</p>
-          </div>
+        <div class="termbody">
+          <p class="termline"><span class="tok-prompt">~</span> <span class="tok-cmd">nexo build</span> <span class="tok-arg">--prod</span></p>
+          <p class="termline tok-dim">✓ Diseño UX/UI · responsive</p>
+          <p class="termline tok-dim">✓ Rendimiento · SEO · accesibilidad</p>
+          <p class="termline tok-dim">✓ Backend · API · base de datos</p>
+          <p class="termline"><span class="tok-ok">●</span> Listo para producción <span class="tok-ms">128 ms</span></p>
         </div>
         <div class="card__row">
-          <div class="mini"><span class="mini__k">Web</span><span class="mini__t">Landing | Ecommerce | Portafolio</span></div>
-          <div class="mini"><span class="mini__k">Apps</span><span class="mini__t">Android | iOS | PWA</span></div>
-          <div class="mini"><span class="mini__k">Sistemas</span><span class="mini__t">ERP | Gestión | Automatización</span></div>
+          <div class="mini"><span class="mini__k">Web</span><span class="mini__t">Landing · E-commerce · Portafolio</span></div>
+          <div class="mini"><span class="mini__k">Apps</span><span class="mini__t">Android · iOS · PWA</span></div>
+          <div class="mini"><span class="mini__k">Sistemas</span><span class="mini__t">ERP · Gestión · Automatización</span></div>
         </div>
-        <div class="card__actions">
-          <a class="btn btn--subtle btn--full" href="/#video">Ver video</a>
-          <a class="link" href="/#portafolio">Explorar trabajos →</a>
-        </div>
+        <a class="link" href="/#servicios">Explorar servicios →</a>
       </div>
     </div>
   </div>

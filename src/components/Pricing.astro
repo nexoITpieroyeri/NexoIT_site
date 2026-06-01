@@ -22,7 +22,7 @@ import { PLANS } from '../data/constants';
       </button>
       <button class="cat-btn cat-btn-trigger" data-id="apps">
         <div class="cat-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="18" r="1" fill="#a8ff53" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="18" r="1" fill="#3D7BFF" stroke="none"/></svg>
         </div>
         <div class="cat-info"><div class="cat-name">Apps</div><div class="cat-count">2 planes</div></div>
       </button>
@@ -123,6 +123,11 @@ import { PLANS } from '../data/constants';
       try {
         if (typeof window.cotizarPlan === 'function') {
           window.cotizarPlan(plan, price, desc);
+          // Restaurar el botón: el modal ya se abrió, el usuario puede volver a cotizar
+          setTimeout(function() {
+            btn.textContent = originalText;
+            btn.disabled = false;
+          }, 600);
         } else {
           showToast('Error al conectar. Intenta de nuevo.');
           btn.textContent = 'Error';
